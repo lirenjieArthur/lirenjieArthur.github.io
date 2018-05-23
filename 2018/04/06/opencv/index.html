@@ -14,6 +14,13 @@
 
 
 
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
 
 
 
@@ -87,7 +94,7 @@
 <meta property="og:site_name" content="ArthurLee&#39;s">
 <meta property="og:description" content="色彩空间BGR、灰度、HSV 傅里叶变换高通滤波器HPF根据像素与周围像素的亮度差来提升该像素的亮度，如果一个像素比他的周围的像素更突出，就会提升其亮度。1234567891011kernel_3x3 = np.array([[-1, -1, -1], [-1, 8, -1], [-1, -1, -1]])kernel_5x5 = np.array([[-1, -1, -1, -1, -1], [">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-08T13:11:56.526Z">
+<meta property="og:updated_time" content="2018-05-23T11:35:40.941Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="opencv">
 <meta name="twitter:description" content="色彩空间BGR、灰度、HSV 傅里叶变换高通滤波器HPF根据像素与周围像素的亮度差来提升该像素的亮度，如果一个像素比他的周围的像素更突出，就会提升其亮度。1234567891011kernel_3x3 = np.array([[-1, -1, -1], [-1, 8, -1], [-1, -1, -1]])kernel_5x5 = np.array([[-1, -1, -1, -1, -1], [">
@@ -370,7 +377,10 @@
 <blockquote>
 <p>cv2.GaussianBlur(src, ksize, sigmaX[, dst[, sigmaY[, borderType]]]) → dst<br><br>ksize -核的半径（ksize.width，ksize.height）必须都为奇数<br><br>sigmaX – Gaussian kernel standard deviation in X direction.<br></p>
 </blockquote>
-<p><a herf="https://docs.opencv.org/2.4/modules/imgproc/doc/filtering.html?highlight=gaussianblur#void%20GaussianBlur(InputArray%20src,%20OutputArray%20dst,%20Size%20ksize,%20double%20sigmaX,%20double%20sigmaY,%20int%20borderType)">高斯模糊API</a></p>
+<h2 id="高通滤波-高通模糊"><a href="#高通滤波-高通模糊" class="headerlink" title="高通滤波/高通模糊"></a>高通滤波/高通模糊</h2><blockquote>
+<p>我们知道滤波器分为高通、低通、带通等类型，高斯滤波和高斯模糊就是依据滤波器是低通滤波器还是高通滤波器来区分的。比如低通滤波器，像素能量低的通过，而对于像素能量高的部分将会采取加权平均的方法重新计算像素的值，将能量像素的值编程能量较低的值，我们知道对于图像而言其高频部分展现图像细节，所以经过低通滤波器之后整幅图像变成低频造成图像模糊，这就被称为高斯模糊；相反高通滤波是允许高频通过而过滤掉低频，这样将低频像素进行锐化操作，图像变的更加清晰，被称为高斯滤波。说白了很简单就是：高斯滤波是指用高斯函数作为滤波函数的滤波操作而高斯模糊是用高斯低通滤波器。</p>
+</blockquote>
+<p><a herf="https://docs.opencv.org/2.4/modules/imgproc/doc/filtering.html?highlight=gaussianblur#void%20GaussianBlur(InputArray%20src,%20OutputArray%20dst,%20Size%20ksize,%20double%20sigmaX,%20double%20sigmaY,%20int%20borderType)">高斯模糊API</a><br><a herf="https://blog.csdn.net/keith_bb/article/details/54412493?locationNum=11&fps=1">高斯滤波</a></p>
 <h1 id="边缘检测"><a href="#边缘检测" class="headerlink" title="边缘检测"></a>边缘检测</h1><p>&emsp;&emsp;边缘检测函数：Laplacian()、Sobel()、Scharr()<br><br>&emsp;&emsp;将非边缘区域转换为黑色，将边缘区域转换为白色或者其他饱和的颜色。边缘检测之前要进行模糊处理和灰度化。<br></p>
 <h1 id="用定制内核做卷积"><a href="#用定制内核做卷积" class="headerlink" title="用定制内核做卷积"></a>用定制内核做卷积</h1><p>&emsp;核/卷积矩阵：一组权重，通过相邻像素点计算新的像素点。</p>
 <blockquote>
@@ -392,7 +402,7 @@
 <blockquote>
 <p>cv2.approxPolyDP(curve轮廓, epsilon, closed[, approxCurve]):计算近似的多边形框<br><br>epsilon：源轮廓与近似多边形的最大差值，越小则越与源轮廓接近。<br><br>cv2.arcLength(): 计算轮廓的周长。多边形的周长与轮廓周长的比就为epsilon。</p>
 </blockquote>
-<h2 id="直线和圆的检测"><a href="#直线和圆的检测" class="headerlink" title="直线和圆的检测"></a>直线和圆的检测</h2><p>Hough变换<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lines = cv2.HoughLinesP(edges, 1, np.pi/180, 100, minLength, maxGap)</span><br><span class="line">circles = cv2.HoughCircles(img, cv2.HOUGH_GRADIENT, 1, 120, param1=100, param2=30, minRadius=0, maxRadius=0)</span><br></pre></td></tr></table></figure></p>
+<h2 id="直线和圆的检测"><a href="#直线和圆的检测" class="headerlink" title="直线和圆的检测"></a>直线和圆的检测</h2><p>Hough变换（霍夫曼变换）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">lines = cv2.HoughLinesP(edges, 1, np.pi/180, 100, minLength, maxGap)</span><br><span class="line">circles = cv2.HoughCircles(img, cv2.HOUGH_GRADIENT, 1, 120, param1=100, param2=30, minRadius=0, maxRadius=0)</span><br><span class="line"># param1：参数method设置的检测方法的对应的参数，传递给canny边缘检测算子的高阈值，而低阈值为高阈值的一半</span><br><span class="line"># param2：参数method设置的检测方法的对应的参数，对当前唯一的方法霍夫梯度法CV_HOUGH_GRADIENT，</span><br><span class="line"># 它表示在检测阶段圆心的累加器阈值。它越小的话，就可以检测到更多根本不存在的圆。</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -421,6 +431,22 @@
       
       
 
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/23/opencv2/" rel="prev" title="opencv2">
+                opencv2 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
       
 
       
@@ -498,7 +524,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -563,7 +589,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#色彩空间"><span class="nav-number">1.</span> <span class="nav-text">色彩空间</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#傅里叶变换"><span class="nav-number">2.</span> <span class="nav-text">傅里叶变换</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#高通滤波器HPF"><span class="nav-number">2.1.</span> <span class="nav-text">高通滤波器HPF</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#低通滤波器LPF"><span class="nav-number">2.2.</span> <span class="nav-text">低通滤波器LPF</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#边缘检测"><span class="nav-number">3.</span> <span class="nav-text">边缘检测</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用定制内核做卷积"><span class="nav-number">4.</span> <span class="nav-text">用定制内核做卷积</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Canny边缘检测"><span class="nav-number">5.</span> <span class="nav-text">Canny边缘检测</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#轮廓检测"><span class="nav-number">6.</span> <span class="nav-text">轮廓检测</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#边界框、最小矩形区域、最小闭圆的轮廓"><span class="nav-number">6.1.</span> <span class="nav-text">边界框、最小矩形区域、最小闭圆的轮廓</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#凸轮廓、Douglas-Peucker算法"><span class="nav-number">6.2.</span> <span class="nav-text">凸轮廓、Douglas-Peucker算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#直线和圆的检测"><span class="nav-number">6.3.</span> <span class="nav-text">直线和圆的检测</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#色彩空间"><span class="nav-number">1.</span> <span class="nav-text">色彩空间</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#傅里叶变换"><span class="nav-number">2.</span> <span class="nav-text">傅里叶变换</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#高通滤波器HPF"><span class="nav-number">2.1.</span> <span class="nav-text">高通滤波器HPF</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#低通滤波器LPF"><span class="nav-number">2.2.</span> <span class="nav-text">低通滤波器LPF</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#高通滤波-高通模糊"><span class="nav-number">2.3.</span> <span class="nav-text">高通滤波/高通模糊</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#边缘检测"><span class="nav-number">3.</span> <span class="nav-text">边缘检测</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用定制内核做卷积"><span class="nav-number">4.</span> <span class="nav-text">用定制内核做卷积</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Canny边缘检测"><span class="nav-number">5.</span> <span class="nav-text">Canny边缘检测</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#轮廓检测"><span class="nav-number">6.</span> <span class="nav-text">轮廓检测</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#边界框、最小矩形区域、最小闭圆的轮廓"><span class="nav-number">6.1.</span> <span class="nav-text">边界框、最小矩形区域、最小闭圆的轮廓</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#凸轮廓、Douglas-Peucker算法"><span class="nav-number">6.2.</span> <span class="nav-text">凸轮廓、Douglas-Peucker算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#直线和圆的检测"><span class="nav-number">6.3.</span> <span class="nav-text">直线和圆的检测</span></a></li></ol></li></ol></div>
             
 
           </div>
