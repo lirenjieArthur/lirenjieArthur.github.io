@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Arthur" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859#include&amp;lt;iostream&amp;gt;using namespace std;/*多重背包问题，以总价值的1/2为背包容量，进行动态规划求解。还用了二进制优化的方法dp[x">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ArthurLee&#39;s">
+<meta property="og:url" content="http://yoursite.com/2018/07/15/C++/index.html">
+<meta property="og:site_name" content="ArthurLee&#39;s">
+<meta property="og:description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859#include&amp;lt;iostream&amp;gt;using namespace std;/*多重背包问题，以总价值的1/2为背包容量，进行动态规划求解。还用了二进制优化的方法dp[x">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-07-15T07:49:20.165Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ArthurLee&#39;s">
+<meta name="twitter:description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859#include&amp;lt;iostream&amp;gt;using namespace std;/*多重背包问题，以总价值的1/2为背包容量，进行动态规划求解。还用了二进制优化的方法dp[x">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/07/15/C++/"/>
+
+
+
+
+
+  <title> | ArthurLee's</title>
+  
+
+
+
+
+
+
+
+
+</head>
+<!-- 设置动态背景
+
+-->
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ArthurLee's</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/15/C++/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ArthurLee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avtar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ArthurLee's">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-15T15:44:13+08:00">
+                2018-07-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line">多重背包问题，以总价值的1/2为背包容量，进行动态规划求解。还用了二进制优化的方法</span><br><span class="line"></span><br><span class="line">dp[x]=1表示这些弹珠可以凑出价值为x的部分，否则就是不能凑成价值为x的部分。</span><br><span class="line">*/</span><br><span class="line">int a[7];</span><br><span class="line">int dp[120000];</span><br><span class="line">int main() &#123;</span><br><span class="line">	int count = 0;</span><br><span class="line">	while (cin&gt;&gt;a[1]) &#123;</span><br><span class="line">		count++;</span><br><span class="line">		int sum = a[1];</span><br><span class="line">		for (int i = 2; i &lt;= 6;i++) &#123;</span><br><span class="line">			cin &gt;&gt; a[i];</span><br><span class="line">			sum += a[i] * i;</span><br><span class="line">		&#125;</span><br><span class="line">		if (sum == 0) &#123; break; &#125;</span><br><span class="line">		bool f = false;//是否可以分，奇数一定不可分</span><br><span class="line">		if (sum%2==0) &#123;</span><br><span class="line">			sum = sum / 2;</span><br><span class="line">			dp[0] = 1;</span><br><span class="line">			for (int i = 1; i &lt;= sum; i++) dp[i] = 0;//</span><br><span class="line">			/*算法核心*/</span><br><span class="line">			for (int i = 1; i &lt;= 6;i++) &#123;</span><br><span class="line">				if (a[i] == 0) continue;</span><br><span class="line">				for (int k = 1; k &lt;= a[i];k*=2) &#123;//取k个, j + k*i 为到达的重量，不超过背包大小sum即可</span><br><span class="line">					for (int j = sum; j &gt;= 0; j--) &#123;//j必须从大到小</span><br><span class="line">						if (dp[j] == 0 || j + k*i &gt; sum) continue;</span><br><span class="line">						dp[j+k*i]=1;</span><br><span class="line">					&#125;</span><br><span class="line">					a[i] -= k;//剩余的数量</span><br><span class="line">				&#125;</span><br><span class="line">				//仍有剩余</span><br><span class="line">				if (a[i]&gt;0) &#123;</span><br><span class="line">					for (int j = sum; j &gt;= 0; j--) &#123;</span><br><span class="line">						if (dp[j] == 0 || j + a[i]*i &gt; sum) continue;</span><br><span class="line">						dp[j + a[i] * i] = 1;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			/*************************************/</span><br><span class="line">			if (dp[sum]==1) &#123;</span><br><span class="line">				f = true;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		cout &lt;&lt; &quot;Collection #&quot; &lt;&lt; count &lt;&lt; &quot;:&quot; &lt;&lt; endl;</span><br><span class="line">		if (f) &#123;</span><br><span class="line">			cout &lt;&lt; &quot;Can be divided.&quot; &lt;&lt; endl;</span><br><span class="line">		&#125;</span><br><span class="line">		else &#123;</span><br><span class="line">			cout &lt;&lt; &quot;Can&apos;t be divided.&quot;&lt;&lt;endl;</span><br><span class="line">		&#125;</span><br><span class="line">		cout &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">struct bound&#123;</span><br><span class="line">	int v;</span><br><span class="line">	int i;</span><br><span class="line">&#125; bounds[11];</span><br><span class="line">int dp[100000];//取100000可AC</span><br><span class="line">int main()&#123;</span><br><span class="line">	int N;</span><br><span class="line">	cin&gt;&gt;N;</span><br><span class="line">	while(N--)&#123;</span><br><span class="line">		int start,years;</span><br><span class="line">		cin&gt;&gt;start&gt;&gt;years;</span><br><span class="line">		int num;</span><br><span class="line">		cin&gt;&gt;num;</span><br><span class="line">		for(int i=1;i&lt;=num;i++)&#123;</span><br><span class="line">			cin&gt;&gt;bounds[i].v&gt;&gt;bounds[i].i;</span><br><span class="line">			bounds[i].v/=1000;//压缩</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		for(int i=0;i&lt;years;i++)&#123;</span><br><span class="line">			memset(dp,0,sizeof(dp));//dp存利息，每年利息重新计算</span><br><span class="line">			int s=start/1000;</span><br><span class="line">			for(int j=1;j&lt;=num;j++)&#123;</span><br><span class="line">				for(int k=bounds[j].v;k&lt;=s;k++)&#123;</span><br><span class="line">					dp[k]=max(dp[k],dp[k-bounds[j].v]+bounds[j].i);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			start+=dp[s];</span><br><span class="line">		&#125;</span><br><span class="line">		cout&lt;&lt;start&lt;&lt;endl;</span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line">#define INT32_MAX        2147483647i32</span><br><span class="line">完全背包问题，dp[j] j 为当前的硬币总重量，j的取值范围只能是0~F-E，dp[j]为当前硬币重j时的最小值</span><br><span class="line">dp[j]=min(dp[j],dp[j-w[i]]+v[i])</span><br><span class="line">*/</span><br><span class="line">#define INT32_MAX        0x7fffffff</span><br><span class="line">struct coin &#123;</span><br><span class="line">	int v;</span><br><span class="line">	int w;</span><br><span class="line">&#125; coins[500];</span><br><span class="line">int dp[10001];</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">	int T;</span><br><span class="line">	cin &gt;&gt; T;</span><br><span class="line">	while (T--) &#123;</span><br><span class="line">		int E, F;</span><br><span class="line">		cin &gt;&gt; E &gt;&gt; F;</span><br><span class="line">		int N;</span><br><span class="line">		cin &gt;&gt; N;</span><br><span class="line">		for (int i = 0; i &lt; N;i++) &#123;</span><br><span class="line">			cin &gt;&gt; coins[i].v &gt;&gt; coins[i].w;</span><br><span class="line">		&#125;</span><br><span class="line">		int weightcoin = F - E;</span><br><span class="line">		for (int i = 1; i &lt;= weightcoin;i++) &#123;</span><br><span class="line">			dp[i] = INT32_MAX;</span><br><span class="line">		&#125;</span><br><span class="line">		dp[0]=0;</span><br><span class="line">		for (int i = 0; i &lt; N;i++) &#123;</span><br><span class="line">			for (int j = coins[i].w; j &lt;= weightcoin;j++) &#123;</span><br><span class="line">				if (dp[j- coins[i].w] != INT32_MAX) &#123;</span><br><span class="line">					dp[j] = min(dp[j], dp[j - coins[i].w]+ coins[i].v);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		if (dp[weightcoin] != INT32_MAX) &#123;</span><br><span class="line">			cout &lt;&lt; &quot;The minimum amount of money in the piggy-bank is &quot; &lt;&lt; dp[weightcoin]&lt;&lt;&quot;.&quot;&lt;&lt;endl;</span><br><span class="line">		&#125;</span><br><span class="line">		else &#123;</span><br><span class="line">			cout &lt;&lt; &quot;This is impossible.&quot; &lt;&lt;endl;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;vector&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">//求i二进制表示末尾0的个数，补码：最后一个1和后面的0不变，其余为取反。</span><br><span class="line">int lowbit(int i)&#123;</span><br><span class="line">	return i &amp; -i;</span><br><span class="line">&#125;</span><br><span class="line">//sum(i) = sum( i – lowbit(i) ) + C[i]</span><br><span class="line">long long getsum(int x,long long *n)&#123;</span><br><span class="line">	long long sum=0;</span><br><span class="line">	for(int i=x;i&gt;0;i-=lowbit(i))&#123;</span><br><span class="line">		sum+=n[i-1];</span><br><span class="line">	&#125;</span><br><span class="line">	return sum;</span><br><span class="line">&#125;</span><br><span class="line">//更新树状数组</span><br><span class="line">void update(int x,int add,long long *v,int N)&#123;</span><br><span class="line">	for(int i=x;i&lt;=N;i+=lowbit(i))&#123;</span><br><span class="line">		v[i-1]+=add;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">	int N,M,opt,l,r,v;</span><br><span class="line">	cin&gt;&gt;N&gt;&gt;M;</span><br><span class="line">	int nums[N+1];</span><br><span class="line">//	vector&lt;int&gt; nums(N+1);</span><br><span class="line">	//树状数组（二分索引数）树状数组维护一个求和数组，将原数组的一些求和结果存在数组中，使用时直接用树状数组求和。最常用的求区间和问题，单点更新.</span><br><span class="line">	long long tree[N+1];//求和结果可能很大</span><br><span class="line">	memset(tree, 0, sizeof(tree));</span><br><span class="line">	for(int i=0;i&lt;N;i++)&#123;</span><br><span class="line">		cin&gt;&gt;nums[i];</span><br><span class="line">		update(i+1,nums[i],tree,N);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	while(M--)&#123;</span><br><span class="line">		cin&gt;&gt;opt;</span><br><span class="line">		if(opt==1)&#123;</span><br><span class="line">			cin&gt;&gt;l&gt;&gt;r&gt;&gt;v;</span><br><span class="line">			if(v == 1) continue;</span><br><span class="line">			while(l&lt;=r)&#123;</span><br><span class="line">				if(nums[l-1]&gt;=v &amp;&amp; nums[l-1]%v==0)&#123;</span><br><span class="line">					update(l,nums[l-1]/v-nums[l-1],tree,N);</span><br><span class="line">					nums[l-1]/=v;</span><br><span class="line">				&#125;</span><br><span class="line">				l++;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		else if(opt==2)&#123;</span><br><span class="line">			cin&gt;&gt;l&gt;&gt;r;</span><br><span class="line">			cout&lt;&lt;getsum(r,tree)-getsum(l-1,tree)&lt;&lt;endl;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/23/opencv2/" rel="next" title="opencv2">
+                <i class="fa fa-chevron-left"></i> opencv2
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avtar.jpg"
+                alt="ArthurLee" />
+            
+              <p class="site-author-name" itemprop="name">ArthurLee</p>
+              <p class="site-description motion-element" itemprop="description">随便写写</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/lirenjieArthur" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ArthurLee</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
