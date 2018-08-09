@@ -373,7 +373,7 @@
 
       
         
-          <h1 id="算法弱鸡的记录"><a href="#算法弱鸡的记录" class="headerlink" title="算法弱鸡的记录"></a>算法弱鸡的记录</h1><p>记录常见的算法和数据结构<br>
+          <h1 id="算法弱鸡的记录"><a href="#算法弱鸡的记录" class="headerlink" title="算法弱鸡的记录"></a>算法弱鸡的记录</h1><p>  记录常见的算法和数据结构</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/07/15/C++/#more" rel="contents">
@@ -520,15 +520,8 @@
       
         
           
-          人脸检测
+            <h1 id="人脸检测"><a href="#人脸检测" class="headerlink" title="人脸检测"></a>人脸检测</h1>
           
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/05/23/opencv2/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -668,16 +661,40 @@
       
         
           
-          色彩空间BGR、灰度、HSV
-傅里叶变换高通滤波器HPF根据像素与周围像素的亮度差来提升该像素的亮度
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/04/06/opencv/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <h1 id="色彩空间"><a href="#色彩空间" class="headerlink" title="色彩空间"></a>色彩空间</h1><p>BGR、灰度、HSV</p>
+<h1 id="傅里叶变换"><a href="#傅里叶变换" class="headerlink" title="傅里叶变换"></a>傅里叶变换</h1><h2 id="高通滤波器HPF"><a href="#高通滤波器HPF" class="headerlink" title="高通滤波器HPF"></a>高通滤波器HPF</h2><p>根据像素与周围像素的亮度差来提升该像素的亮度，如果一个像素比他的周围的像素更突出，就会提升其亮度。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">kernel_3x3 = np.array([[-1, -1, -1], [-1, 8, -1], [-1, -1, -1]])</span><br><span class="line">kernel_5x5 = np.array([[-1, -1, -1, -1, -1], [-1, 1, 2, 1, -1], [-1, 2, 4, 2, -1], [-1, 1, 2, 1, -1],</span><br><span class="line">                       [-1, -1, -1, -1, -1]])</span><br><span class="line">k3 = ndimage.convolve(img, kernel_3x3)</span><br><span class="line">k5 = ndimage.convolve(img, kernel_5x5)  # 自定义卷积核实现高通滤波</span><br><span class="line">blurred = cv2.GaussianBlur(img, (11, 11), 0)  # 高斯模糊（低通滤波）</span><br><span class="line">hpf = img - blurred # 与原始图像计算差值实现高通滤波</span><br><span class="line">cv2.imshow(&quot;3x3&quot;, k3)</span><br><span class="line">cv2.imshow(&quot;5x5&quot;, k5)</span><br><span class="line">cv2.imshow(&quot;hpf&quot;, hpf)</span><br><span class="line">cv2.imshow(&quot;blurred&quot;, blurred)</span><br></pre></td></tr></table></figure></p>
+<h2 id="低通滤波器LPF"><a href="#低通滤波器LPF" class="headerlink" title="低通滤波器LPF"></a>低通滤波器LPF</h2><p>像素与周围像素的亮度差小于一个特定值时，平滑该像素的亮度，主要用于去噪和模糊化。<br><br>高斯模糊（平滑滤波器），削弱高频信号强度。</p>
+<blockquote>
+<p>cv2.GaussianBlur(src, ksize, sigmaX[, dst[, sigmaY[, borderType]]]) → dst<br><br>ksize -核的半径（ksize.width，ksize.height）必须都为奇数<br><br>sigmaX – Gaussian kernel standard deviation in X direction.<br></p>
+</blockquote>
+<h2 id="高通滤波-高通模糊"><a href="#高通滤波-高通模糊" class="headerlink" title="高通滤波/高通模糊"></a>高通滤波/高通模糊</h2><blockquote>
+<p>我们知道滤波器分为高通、低通、带通等类型，高斯滤波和高斯模糊就是依据滤波器是低通滤波器还是高通滤波器来区分的。比如低通滤波器，像素能量低的通过，而对于像素能量高的部分将会采取加权平均的方法重新计算像素的值，将能量像素的值编程能量较低的值，我们知道对于图像而言其高频部分展现图像细节，所以经过低通滤波器之后整幅图像变成低频造成图像模糊，这就被称为高斯模糊；相反高通滤波是允许高频通过而过滤掉低频，这样将低频像素进行锐化操作，图像变的更加清晰，被称为高斯滤波。说白了很简单就是：高斯滤波是指用高斯函数作为滤波函数的滤波操作而高斯模糊是用高斯低通滤波器。</p>
+</blockquote>
+<p><a herf="https://docs.opencv.org/2.4/modules/imgproc/doc/filtering.html?highlight=gaussianblur#void%20GaussianBlur(InputArray%20src,%20OutputArray%20dst,%20Size%20ksize,%20double%20sigmaX,%20double%20sigmaY,%20int%20borderType)">高斯模糊API</a><br><a herf="https://blog.csdn.net/keith_bb/article/details/54412493?locationNum=11&fps=1">高斯滤波</a></p>
+<h1 id="边缘检测"><a href="#边缘检测" class="headerlink" title="边缘检测"></a>边缘检测</h1><p>&emsp;&emsp;边缘检测函数：Laplacian()、Sobel()、Scharr()<br><br>&emsp;&emsp;将非边缘区域转换为黑色，将边缘区域转换为白色或者其他饱和的颜色。边缘检测之前要进行模糊处理和灰度化。<br></p>
+<h1 id="用定制内核做卷积"><a href="#用定制内核做卷积" class="headerlink" title="用定制内核做卷积"></a>用定制内核做卷积</h1><p>&emsp;核/卷积矩阵：一组权重，通过相邻像素点计算新的像素点。</p>
+<blockquote>
+<p>cv2.filter2D(src,-1,kernel,dst)<br><br>第二个参数指定了目标图像的每个通道的位深度，负值表示目标图像和原图像相同位深度。</p>
+</blockquote>
+<p>锐化（权重和为1）、边缘检测（权重和为0）、模糊（权重和为1，相邻的像素权重全为正）都应用了高度对称的核。</p>
+<h1 id="Canny边缘检测"><a href="#Canny边缘检测" class="headerlink" title="Canny边缘检测"></a>Canny边缘检测</h1><blockquote>
+<p>cv2.Canny()</p>
+</blockquote>
+<h1 id="轮廓检测"><a href="#轮廓检测" class="headerlink" title="轮廓检测"></a>轮廓检测</h1><p>计算多边形边界、形状逼近、计算感兴趣区域<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">img1 = np.zeros((200, 200), dtype=np.uint8)</span><br><span class="line">img1[50:150, 50:150] = 255  # 图像中央放置白色方块</span><br><span class="line">ret, thresh = cv2.threshold(img1, 127, 255, 0)  # 二值化</span><br><span class="line">image, contours, hierarchy = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)</span><br><span class="line">color = cv2.cvtColor(img1, cv2.COLOR_GRAY2BGR)</span><br><span class="line">img1 = cv2.drawContours(color, contours, -1, (0, 255, 0), 2)</span><br><span class="line">cv2.imshow(&quot;contours&quot;, color)</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>retval, dst = cv2.threshold(src, thresh, maxval, type[, dst])<br><br>thresh 阈值 maxval：dst图像中最大值  type：阈值类型</p>
+</blockquote>
+<blockquote>
+<p>cv2.findContours(image, mode, method[, contours[, hierarchy[, offset]]])<br></p>
+</blockquote>
+<h2 id="边界框、最小矩形区域、最小闭圆的轮廓"><a href="#边界框、最小矩形区域、最小闭圆的轮廓" class="headerlink" title="边界框、最小矩形区域、最小闭圆的轮廓"></a>边界框、最小矩形区域、最小闭圆的轮廓</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">img = cv2.pyrDown(cv2.imread(&quot;test1.jpg&quot;, cv2.IMREAD_UNCHANGED))</span><br><span class="line">ret, thresh = cv2.threshold(cv2.cvtColor(img.copy(), cv2.COLOR_BGR2GRAY), 127, 255, cv2.THRESH_BINARY)</span><br><span class="line">image, contours, hier = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)</span><br><span class="line">for c in contours:</span><br><span class="line">    # 计算简单的边界框,画出矩形</span><br><span class="line">    x, y, w, h = cv2.boundingRect(c)</span><br><span class="line">    cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 2)</span><br><span class="line">    # 计算最小矩形区域</span><br><span class="line">    rect = cv2.minAreaRect(c)</span><br><span class="line">    # 最小矩形的顶点</span><br><span class="line">    box = cv2.boxPoints(rect)</span><br><span class="line">    # float转int</span><br><span class="line">    box = np.int0(box)</span><br><span class="line">    # 画出上面的矩形</span><br><span class="line">    cv2.drawContours(img, [box], 0, (0, 0, 255), 3)</span><br><span class="line">    # 计算最小闭圆的圆心和半径</span><br><span class="line">    (x, y), radius = cv2.minEnclosingCircle(c)</span><br><span class="line">    center = (int(x), int(y))</span><br><span class="line">    radius = int(radius)</span><br><span class="line">    # 画圆</span><br><span class="line">    img = cv2.circle(img, center, radius, (0, 255, 0), 2)</span><br><span class="line">cv2.drawContours(img, contours, -1, (255, 0, 0), 1)</span><br><span class="line">cv2.imshow(&quot;contours&quot;, img)</span><br></pre></td></tr></table></figure>
+<h2 id="凸轮廓、Douglas-Peucker算法"><a href="#凸轮廓、Douglas-Peucker算法" class="headerlink" title="凸轮廓、Douglas-Peucker算法"></a>凸轮廓、Douglas-Peucker算法</h2><p>凸形状内部的任意两点的连线都在该形状里面。<br></p>
+<blockquote>
+<p>cv2.approxPolyDP(curve轮廓, epsilon, closed[, approxCurve]):计算近似的多边形框<br><br>epsilon：源轮廓与近似多边形的最大差值，越小则越与源轮廓接近。<br><br>cv2.arcLength(): 计算轮廓的周长。多边形的周长与轮廓周长的比就为epsilon。</p>
+</blockquote>
+<h2 id="直线和圆的检测"><a href="#直线和圆的检测" class="headerlink" title="直线和圆的检测"></a>直线和圆的检测</h2><p>Hough变换（霍夫曼变换）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">lines = cv2.HoughLinesP(edges, 1, np.pi/180, 100, minLength, maxGap)</span><br><span class="line">circles = cv2.HoughCircles(img, cv2.HOUGH_GRADIENT, 1, 120, param1=100, param2=30, minRadius=0, maxRadius=0)</span><br><span class="line"># param1：参数method设置的检测方法的对应的参数，传递给canny边缘检测算子的高阈值，而低阈值为高阈值的一半</span><br><span class="line"># param2：参数method设置的检测方法的对应的参数，对当前唯一的方法霍夫梯度法CV_HOUGH_GRADIENT，</span><br><span class="line"># 它表示在检测阶段圆心的累加器阈值。它越小的话，就可以检测到更多根本不存在的圆。</span><br></pre></td></tr></table></figure></p>
+
+          
         
       
     </div>
