@@ -1930,7 +1930,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #d44fff;
+  background: #ff4f58;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2724,7 +2724,7 @@ img:hover {
   overflow: hidden;
   padding: 0;
   width: 240px;
-  background: #ebfffa;
+  background: #fff;
   box-shadow: initial;
   border-radius: initial;
 }
