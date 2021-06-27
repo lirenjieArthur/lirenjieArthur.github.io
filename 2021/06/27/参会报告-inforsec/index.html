@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Inforsec网络空间安全宣传周系列活动今年国家网络安全宣传周的主题是“网络安全为人民，网络安全靠人民“。本次活动是由清华大学、中科院软件所、奇安信集团、论客科技（广州）有限公司、北京信息科学与技术国家研究中心、InForSec论坛、DataCon大赛组委会等联合举办，于9月19日~9月20日在清华大学和中科院软件所两地举行。 本次活动有两天，第一天在清华大学，第二天在软件所，由于时间关系只参与">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Inforsec参会小结">
+<meta property="og:url" content="http://yoursite.com/2021/06/27/%E5%8F%82%E4%BC%9A%E6%8A%A5%E5%91%8A-inforsec/index.html">
+<meta property="og:site_name" content="ArthurLee&#39;s">
+<meta property="og:description" content="Inforsec网络空间安全宣传周系列活动今年国家网络安全宣传周的主题是“网络安全为人民，网络安全靠人民“。本次活动是由清华大学、中科院软件所、奇安信集团、论客科技（广州）有限公司、北京信息科学与技术国家研究中心、InForSec论坛、DataCon大赛组委会等联合举办，于9月19日~9月20日在清华大学和中科院软件所两地举行。 本次活动有两天，第一天在清华大学，第二天在软件所，由于时间关系只参与">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://lrj-typora.oss-cn-beijing.aliyuncs.com/img/image-20201021153634436.png">
+<meta property="og:image" content="https://lrj-typora.oss-cn-beijing.aliyuncs.com/img/image-20201021155331645.png">
+<meta property="og:image" content="https://lrj-typora.oss-cn-beijing.aliyuncs.com/img/image-20201021155920353.png">
+<meta property="og:image" content="https://lrj-typora.oss-cn-beijing.aliyuncs.com/img/image-20201021161422533.png">
+<meta property="og:image" content="https://lrj-typora.oss-cn-beijing.aliyuncs.com/img/image-20201021161458356.png">
+<meta property="og:image" content="https://lrj-typora.oss-cn-beijing.aliyuncs.com/img/image-20201021181506806.png">
+<meta property="og:image" content="https://lrj-typora.oss-cn-beijing.aliyuncs.com/img/image-20201021191745799.png">
+<meta property="og:image" content="https://lrj-typora.oss-cn-beijing.aliyuncs.com/img/image-20201021194028756.png">
+<meta property="og:image" content="https://lrj-typora.oss-cn-beijing.aliyuncs.com/img/image-20201021200108123.png">
+<meta property="article:published_time" content="2021-06-27T08:31:00.901Z">
+<meta property="article:modified_time" content="2021-06-27T08:36:03.800Z">
+<meta property="article:author" content="ArthurLee">
+<meta property="article:tag" content="inforsec">
+<meta property="article:tag" content="academic conference">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lrj-typora.oss-cn-beijing.aliyuncs.com/img/image-20201021153634436.png">
+
+<link rel="canonical" href="http://yoursite.com/2021/06/27/%E5%8F%82%E4%BC%9A%E6%8A%A5%E5%91%8A-inforsec/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Inforsec参会小结 | ArthurLee's</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">ArthurLee's</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/06/27/%E5%8F%82%E4%BC%9A%E6%8A%A5%E5%91%8A-inforsec/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ArthurLee">
+      <meta itemprop="description" content="随便写写">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ArthurLee's">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Inforsec参会小结
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-06-27 16:31:00 / 修改时间：16:36:03" itemprop="dateCreated datePublished" datetime="2021-06-27T16:31:00+08:00">2021-06-27</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%8F%82%E4%BC%9A%E5%B0%8F%E7%BB%93/" itemprop="url" rel="index"><span itemprop="name">参会小结</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Inforsec网络空间安全宣传周系列活动"><a href="#Inforsec网络空间安全宣传周系列活动" class="headerlink" title="Inforsec网络空间安全宣传周系列活动"></a>Inforsec网络空间安全宣传周系列活动</h1><p>今年国家网络安全宣传周的主题是“网络安全为人民，网络安全靠人民“。本次活动是由清华大学、中科院软件所、奇安信集团、论客科技（广州）有限公司、北京信息科学与技术国家研究中心、InForSec论坛、DataCon大赛组委会等联合举办，于9月19日~9月20日在清华大学和中科院软件所两地举行。</p>
+<p>本次活动有两天，第一天在清华大学，第二天在软件所，由于时间关系只参与了19日在清华举办的活动。由于清华限制入校人数，所以通过提前预约，得到了宝贵的到线下参会的机会，有幸去到清华现场听取各路大佬的报告，感受到了顶尖的安全研究人员的魅力。</p>
+<p>19日的活动内容主要包括三个：</p>
+<ul>
+<li>清华大学网络研究院2020 网络与系统安全学术研究成果汇报会</li>
+<li>DataCon竞赛分享</li>
+<li>Coremail邮件安全竞赛与THUCTF启动仪式</li>
+</ul>
+<p>本次参会主要听取了前两项。</p>
+<span id="more"></span>
+
+<h2 id="清华大学网络研究院2020网络与系统安全学术研究成果汇报会"><a href="#清华大学网络研究院2020网络与系统安全学术研究成果汇报会" class="headerlink" title="清华大学网络研究院2020网络与系统安全学术研究成果汇报会"></a>清华大学网络研究院2020网络与系统安全学术研究成果汇报会</h2><p>19日上午是清华网研院的研究成果汇报会，主要由清华的研究人员分享他们NDSS‘20、USENIX Seccurity’20和CCS‘20上发表的8篇论文。内容涉及到CDN安全、DDoS攻击、数据驱动安全、CFI、Fuzz、SDN等诸多领域。</p>
+<h3 id="CDN-Judo-Breaking-the-CDN-DoS-Protection-with-Itself"><a href="#CDN-Judo-Breaking-the-CDN-DoS-Protection-with-Itself" class="headerlink" title="CDN Judo: Breaking the CDN DoS Protection with Itself"></a>CDN Judo: Breaking the CDN DoS Protection with Itself</h3><blockquote>
+<p>汇报人：<a target="_blank" rel="noopener" href="https://netsec.ccert.edu.cn/chs/people/gr15">郭润</a> 15级博士研究生</p>
+<p>会议：NDSS‘20    <a target="_blank" rel="noopener" href="https://www.ndss-symposium.org/ndss-paper/cdn-judo-breaking-the-cdn-dos-protection-with-itself/">paper&amp;slides</a></p>
+</blockquote>
+<p>这是之前我在讨论班讲过的一篇论文，因此参会时听起来没什么困难，与我之前的理解一致。</p>
+<p>作者发现有部分CDN服务商在转发机制上存在实现缺陷或协议缺陷，使得攻击者可以攻破CDN的保护机制。通过向CDN发送精心构造的但是合法的数据包，攻击者可以对在CDN保护下的源站发起有效的DoS攻击。作者共发现了三种攻击方式，并在市场份额较高的6个CDN服务商进行了测试，并在实际的使用场景下发起三种攻击，评估了攻击造成的实际影响。</p>
+<p>三种攻击方式有：</p>
+<ul>
+<li>滥用CDN的HTTP/2协议转换，实现<strong>HTTP/2放大攻击</strong></li>
+<li>滥用CDN的Pre-Post处理机制，实现<strong>Pre-POST慢速HTTP攻击</strong></li>
+<li>利用CDN的入站IP和出站IP数量的差距以及出站IP的较低的切换频率，实现<strong>出口IP阻塞攻击</strong></li>
+</ul>
+<p>详细内容可见会议ppt以及讨论班ppt（2020年MESA学生讨论班第21期）</p>
+<h3 id="Poison-Over-Troubled-Forwarders-A-Cache-Poisoning-Attack-Targeting-DNS-Forwarding-Devices"><a href="#Poison-Over-Troubled-Forwarders-A-Cache-Poisoning-Attack-Targeting-DNS-Forwarding-Devices" class="headerlink" title="Poison Over Troubled Forwarders: A Cache Poisoning Attack Targeting DNS Forwarding Devices"></a>Poison Over Troubled Forwarders: A Cache Poisoning Attack Targeting DNS Forwarding Devices</h3><blockquote>
+<p>汇报人：郑晓峰 博士研究生</p>
+</blockquote>
+<blockquote>
+<p>会议：USENIX Seccurity’20    <a target="_blank" rel="noopener" href="https://www.usenix.org/conference/usenixsecurity20/presentation/zheng">paper&amp;slides</a></p>
+</blockquote>
+<p>此前的DNS缓存投毒往往关注DNS递归解析器（recursive resolvers），很少关注DNS转发器（forwarders）。递归解析器和转发器的关系如下图，转发器往往是家庭路由器或者是公共场所的WIFI，它们往往都具备缓存功能，并且需要依赖上游的解析器（也就是递归解析器）。</p>
+<p><img src="https://lrj-typora.oss-cn-beijing.aliyuncs.com/img/image-20201021153634436.png" alt="image-20201021153634436"></p>
+<p>由于RFC 5452中规定DNS解析程序应该使用随机的端口号和事务ID，如下图。因此针对递归解析器的缓存投毒攻击需要猜解这两个字段，猜解的空间范围是$2^{32}$。</p>
+<p><img src="https://lrj-typora.oss-cn-beijing.aliyuncs.com/img/image-20201021155331645.png" alt="image-20201021155331645"></p>
+<p><strong>攻击迁移</strong>：为了减少猜解的空间范围，作者提出了一种利用IP分片机制，针对DNS转发器的缓存投毒攻击。由于目前的大多数OS的PMTU都支持大于512字节，因此在客户端操作系统造成分比较困难。所以就将攻击目标转向DNS转发器，这些转发器的PMTU往往只有512字节，因此借助IP分片，攻击者只需要伪装成第二个报文，让转发器先缓存，再等待第一个分片报文，转发器遇到相同IPID的分片报文会当作一个完整的数据包。这样一来攻击者只需要猜解转发器上游的递归解析器的IPID即可，这样猜解范围降到$2^{16}$，同时现有的OS上生成的IPID很多都是基于hash或是有一定的范围，使得攻击成本进一步降低。</p>
+<p>威胁模型如下：</p>
+<p><img src="https://lrj-typora.oss-cn-beijing.aliyuncs.com/img/image-20201021155920353.png" alt="image-20201021155920353"></p>
+<p>攻击者需要和DNS转发器处于同一个LAN中，并且为了稳定的构造分片，攻击者需要控制一个权威域名服务器来回复一个很长的CNAME链，如下图；同时DNS转发器没有额外的安全机制，完全依赖于上游的递归解析器。</p>
+<p><img src="https://lrj-typora.oss-cn-beijing.aliyuncs.com/img/image-20201021161422533.png" alt="image-20201021161422533"></p>
+<p><strong>攻击流程</strong>：</p>
+<p><img src="https://lrj-typora.oss-cn-beijing.aliyuncs.com/img/image-20201021161458356.png" alt="image-20201021161458356"></p>
+<ol>
+<li>攻击者先随便向递归解析器发送一个请求，得到一个带有IPID的响应，预测下一个IPID。向转发器发送一个完整数据包的第二分片，伪装成递归解析器发给转发器的数据包，携带有指向victim.com的恶意地址，使得转发器把该分片缓存，等待第一分片。</li>
+<li>向发起指向攻击者控制的域名的请求，请求会到达攻击者控制的ADNS。</li>
+<li>ADNS端用CNAME填充响应，返回一个大于MTU的响应。递归解析器把该响应分片后发给转发器。</li>
+<li>转发器将第一分片与之前缓存的第二分片重组，作为完整的响应。最终实现缓存投毒的效果。</li>
+</ol>
+<p>实现该攻击有<strong>四个条件</strong>：</p>
+<ol>
+<li>转发器要按记录（by record）进行DNS缓存，这也是目前大多数转发器的实现方式。</li>
+<li>支持EDNS(0)。  </li>
+<li>转发器不会主动截断DNS响应。</li>
+<li>转发器不对响应进行验证。</li>
+</ol>
+<p><strong>现实环境评估</strong>：</p>
+<p>测试了16款路由器，8个存在该漏洞；7款DNS软件，2个存在漏洞。</p>
+<p>在20k客户端上进行测试，发现40%不支持EDNS(0)，6.6%存在受攻击的风险。</p>
+<p><strong>攻击缓解</strong>：</p>
+<ul>
+<li>短期解决方案：按响应进行DNS缓存</li>
+<li>对DNS响应进行验证（部署DNSSEC等）</li>
+</ul>
+<p>问题根源：</p>
+<ul>
+<li>缺乏明确的DNS转发器准则<ul>
+<li>转发器到底要扮演什么角色？</li>
+<li>应该支持哪些特性？</li>
+</ul>
+</li>
+</ul>
+<h3 id="Talking-with-Familiar-Strangers-An-Empirical-Study-on-HTTPS-Context-Confusion-Attacks"><a href="#Talking-with-Familiar-Strangers-An-Empirical-Study-on-HTTPS-Context-Confusion-Attacks" class="headerlink" title="Talking with Familiar Strangers: An Empirical Study on HTTPS Context Confusion Attacks"></a>Talking with Familiar Strangers: An Empirical Study on HTTPS Context Confusion Attacks</h3><blockquote>
+<p>汇报人：<a target="_blank" rel="noopener" href="https://netsec.ccert.edu.cn/chs/people/zmm18">张明明</a> 18级博士研究生</p>
+</blockquote>
+<blockquote>
+<p>会议：CCS‘20    <a target="_blank" rel="noopener" href="https://dl.acm.org/doi/10.1145/3372297.3417252">paper</a>&amp;slides（暂未公开）</p>
+</blockquote>
+<p>此前针对SSL/TLS的MITM攻击有两种：</p>
+<ul>
+<li>SSL Stripping Attack</li>
+<li>SSL Sniffing Attack</li>
+</ul>
+<p>本文提出了一种新型的HTTPS加密流量劫持攻击，无需HTTP明文协议的配合即可攻击，即使用户访问的目标网站部署了HTTPS的最佳实践措施，攻击者仍然可以劫持篡改用户与网站之间的加密通信，可导致网站支付劫持、下载文件替换等严重的后果。</p>
+<p>这个攻击比较有意思，在现场也以视频的形式展示了针对京东支付的劫持，用户完全无感，且浏览器始终没有提示存在风险。</p>
+<p><strong>攻击前提</strong>：证书共享，多个domain共享同一个证书，存在安全依赖关系，如下图，安全性就取决于最弱的那个网站。</p>
+<p><img src="https://lrj-typora.oss-cn-beijing.aliyuncs.com/img/image-20201021181506806.png" alt="image-20201021181506806"></p>
+<ul>
+<li>一个证书被多个domain共享</li>
+<li>多个服务器共同部署同一个证书</li>
+</ul>
+<p><strong>威胁模型</strong>：</p>
+<p><img src="https://lrj-typora.oss-cn-beijing.aliyuncs.com/img/image-20201021191745799.png" alt="image-20201021191745799"></p>
+<p>攻击者通过中间人的方式，劫持客户端的HTTPS请求到一个与server A共享证书的server B，server A有严格安全策略（例如HSTS），server B存在有缺陷的安全策略（不强制客户端使用HTTPS）。对请求①，攻击者中断客户端和server A的连接，重新与server B建立连接。server B给返回存在缺陷的响应（不安全的302跳转、错配置的HSTS头 等），同时附有与A共享的证书。</p>
+<p>这样在客户端看来，访问的是server A，实际上是与server B建立的连接。</p>
+<p>作者把这种攻击叫做HTTPS Context Confusion Attack (<strong>SCC Attack</strong>)，被Confusion的包括server、browser、用户。</p>
+<p><strong>SCC的两个攻击场景</strong>：</p>
+<ul>
+<li><p>HTTPS降级攻击（downgrading attack）</p>
+<p>利用B返回的不安全的302 HTTP跳转</p>
+<ul>
+<li><p>单级降级</p>
+<p>通过一次3xx重定向，将到server A的HTTPS连接降级为到server B的HTTP连接</p>
+</li>
+<li><p>多级降级</p>
+<p>通过多次3xx重定向，将到server A的HTTPS连接降级为到server B的HTTP连接</p>
+<p><img src="https://lrj-typora.oss-cn-beijing.aliyuncs.com/img/image-20201021194028756.png" alt="image-20201021194028756"></p>
+</li>
+</ul>
+</li>
+<li><p>HSTS Bypass攻击</p>
+</li>
+</ul>
+<p>Web服务器可以通过HSTS策略（在HTTP响应头中设置 Strict-Transport-Security，STS）强制客户端浏览器使用HTTPS。但是HSTS存在误配置或者部署不全面，攻击者可以利用实际部署中的缺陷来绕过HSTS策略，可以达到三种不同程度的攻击效果。</p>
+<ul>
+<li>清除server A的HSTS策略<ul>
+<li>HSTS的<code>max-age=0</code></li>
+</ul>
+</li>
+<li>取消server A子域的HSTS策略<ul>
+<li><code>&lt;no includeSubdomain&gt;</code></li>
+</ul>
+</li>
+<li>缩短server A的HSTS有效期<ul>
+<li><code>max-age=&lt;smaller-than-A&gt;</code></li>
+</ul>
+</li>
+</ul>
+<p><strong>不同连接状态下的攻击时间点选择</strong>：</p>
+<img src="https://lrj-typora.oss-cn-beijing.aliyuncs.com/img/image-20201021200108123.png" alt="image-20201021200108123" style="zoom: 67%;" />
+
+<ul>
+<li><p>case A</p>
+<p>要劫持的域是一个只服务于单个资源的专用域，可以通过DNS缓存投毒劫持。</p>
+</li>
+<li><p>case B</p>
+<p>要劫持的域是一个通过不同path服务于多个资源的域，攻击者并不能劫持所有流量到server B，需要在识别出特定的path（通过HTTPS Path Leaks）。只能在握手过程中进行劫持。</p>
+</li>
+<li><p>case C</p>
+<p>要劫持已经建立连接的长连接，需要在特定条件下触发TLS Re-handshake。</p>
+</li>
+</ul>
+<p>此外，作者也在现实世界中进行了测量，发现25.2%的Alexa Top500网站的子域会受到SCC攻击的影响。并且还挖掘了不同网站之间的安全依赖关系等问题，详细内容见paper。</p>
+<h3 id="Lies-in-the-Air-Characterizing-Fake-base-station-Spam-Ecosystem-in-China"><a href="#Lies-in-the-Air-Characterizing-Fake-base-station-Spam-Ecosystem-in-China" class="headerlink" title="Lies in the Air: Characterizing Fake-base-station Spam Ecosystem in China"></a>Lies in the Air: Characterizing Fake-base-station Spam Ecosystem in China</h3><blockquote>
+<p>汇报人：<a target="_blank" rel="noopener" href="https://netsec.ccert.edu.cn/chs/people/zym17">张一铭</a> 17级博士研究生</p>
+</blockquote>
+<blockquote>
+<p>会议：CCS‘20    <a target="_blank" rel="noopener" href="https://luchaoyi.com/paper/ccs20-fbs.pdf">paper</a>&amp;slides</p>
+</blockquote>
+<p>这是一篇数据驱动的研究论文，通过和360手机安全卫士合作，收集志愿用户的97天的短信数据，对国内的垃圾短信生态进行了比较详细的研究。</p>
+<p>对于这个演讲没做详细的记录，但是其中的团伙发现、行踪分析等内容个人感觉还是比较有趣的，印象比较深刻。作为数据驱动的研究，分析方式确实很重要，作者通过大量的数据发现问题的思路很值得学习。</p>
+<h3 id="Finding-Cracks-in-Shields-On-the-Security-of-Control-Flow-Integrity-Mechanisms"><a href="#Finding-Cracks-in-Shields-On-the-Security-of-Control-Flow-Integrity-Mechanisms" class="headerlink" title="Finding Cracks in Shields: On the Security of Control Flow Integrity Mechanisms"></a>Finding Cracks in Shields: On the Security of Control Flow Integrity Mechanisms</h3><blockquote>
+<p>汇报人：<a target="_blank" rel="noopener" href="https://netsec.ccert.edu.cn/chs/people/lydora18">李媛</a> 18级博士研究生</p>
+</blockquote>
+<blockquote>
+<p>会议：CCS‘20    <a target="_blank" rel="noopener" href="https://dl.acm.org/doi/10.1145/3372297.3417867">paper</a>&amp;slides</p>
+</blockquote>
+<p>这是一个有关控制流完整性的研究，控制流完整性（CFI）是缓解控制流劫持攻击的一种很有前途的技术， 在过去的十年中，研究人员提出了数十种CFI机制，但是这些CFI机制的安全性并未被仔细地评估。本文提出了一种解决方案，用于测量实际安全性与理论安全性之间的差距。</p>
+<h3 id="FANS-Fuzzing-Android-Native-System-Services-via-Automated-Interface-Analysis"><a href="#FANS-Fuzzing-Android-Native-System-Services-via-Automated-Interface-Analysis" class="headerlink" title="FANS: Fuzzing Android Native System Services via Automated Interface Analysis"></a>FANS: Fuzzing Android Native System Services via Automated Interface Analysis</h3><blockquote>
+<p>汇报人：刘保证 毕业硕士生 目前就职于华为可信计算实验室</p>
+</blockquote>
+<blockquote>
+<p>会议：USENIX Seccurity’20    <a target="_blank" rel="noopener" href="https://www.usenix.org/conference/usenixsecurity20/presentation/liu">paper&amp;slides</a></p>
+</blockquote>
+<p>针对安卓原生系统服务的fuzz。</p>
+<h3 id="Poseidon-Mitigating-Volumetric-DDoS-Attacks-with-Programmable-Switches"><a href="#Poseidon-Mitigating-Volumetric-DDoS-Attacks-with-Programmable-Switches" class="headerlink" title="Poseidon: Mitigating Volumetric DDoS Attacks with Programmable Switches"></a>Poseidon: Mitigating Volumetric DDoS Attacks with Programmable Switches</h3><blockquote>
+<p>汇报人：<a target="_blank" rel="noopener" href="https://zhangmenghao.github.io/">张梦豪</a> 16级博士研究生</p>
+</blockquote>
+<blockquote>
+<p>会议：NDSS‘20    <a target="_blank" rel="noopener" href="https://www.ndss-symposium.org/ndss-paper/poseidon-mitigating-volumetric-ddos-attacks-with-programmable-switches/">paper&amp;slides</a></p>
+</blockquote>
+<p>在可编程交换机上实现的DDoS防护方案，做的工作十分全面。内容较多，并且作者在汇报时语速很快，没有详细记录。</p>
+<p>现如今的DDoS防护往往都是基于CDN或是流量清洗中心的解决方案，但是并不能满足低延迟、低成本、敏捷部署的要求。而可编程交换设备的出现就可以弥补这些不足，具有以下优势：</p>
+<ul>
+<li>可编程，灵活性高</li>
+<li>功耗、处理能力与现有的交换机基本一致，单位成本更低</li>
+<li>高数据包处理速度，可以达到线速，比交换机高几个数量级的吞吐量和更低的延迟</li>
+</ul>
+<p>为了实现基于可编程交换设备的DDoS，有三个主要挑战：</p>
+<ol>
+<li><p>防御策略的表达</p>
+<p>基于P4、DPDK抽象出一层自定义的语言（原语）。</p>
+</li>
+<li><p>防御资源协调</p>
+<p>防御原语解析、防御原语部署。</p>
+</li>
+<li><p>应对不同攻击的动态调整</p>
+<p>为了防止切换时的断流问题，采取状态备份的方式，将系统状态备份到后端server。</p>
+</li>
+</ol>
+<h3 id="When-Match-Fields-Do-Not-Need-to-Match-Buffered-Packets-Hijacking-in-SDN"><a href="#When-Match-Fields-Do-Not-Need-to-Match-Buffered-Packets-Hijacking-in-SDN" class="headerlink" title="When Match Fields Do Not Need to Match: Buffered Packets Hijacking in SDN"></a>When Match Fields Do Not Need to Match: Buffered Packets Hijacking in SDN</h3><blockquote>
+<p>汇报人：谢仁杰 即将入学的博士生</p>
+</blockquote>
+<blockquote>
+<p>会议：NDSS‘20    <a target="_blank" rel="noopener" href="https://www.ndss-symposium.org/ndss-paper/when-match-fields-do-not-need-to-match-buffered-packets-hijacking-in-sdn/">paper&amp;slides</a></p>
+</blockquote>
+<p>针对SDN的Buffer ID的劫持攻击。未作记录，详细内容可见paper&amp;slides。</p>
+<h2 id="DataCon竞赛分享"><a href="#DataCon竞赛分享" class="headerlink" title="DataCon竞赛分享"></a>DataCon竞赛分享</h2><p>邀请了比赛中各个方向拿了第一名的队伍进行分享，主要听取了加密流量解题思路的分享。</p>
+<p>详细内容见<a target="_blank" rel="noopener" href="https://datacon.qianxin.com/blog/archives/category/%E8%B5%9B%E9%A2%98writeup">赛题writeup</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/inforsec/" rel="tag"># inforsec</a>
+              <a href="/tags/academic-conference/" rel="tag"># academic conference</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/08/31/anaconda/" rel="prev" title="anaconda常用命令">
+      <i class="fa fa-chevron-left"></i> anaconda常用命令
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Inforsec%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E5%AE%89%E5%85%A8%E5%AE%A3%E4%BC%A0%E5%91%A8%E7%B3%BB%E5%88%97%E6%B4%BB%E5%8A%A8"><span class="nav-number">1.</span> <span class="nav-text">Inforsec网络空间安全宣传周系列活动</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%85%E5%8D%8E%E5%A4%A7%E5%AD%A6%E7%BD%91%E7%BB%9C%E7%A0%94%E7%A9%B6%E9%99%A22020%E7%BD%91%E7%BB%9C%E4%B8%8E%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E5%AD%A6%E6%9C%AF%E7%A0%94%E7%A9%B6%E6%88%90%E6%9E%9C%E6%B1%87%E6%8A%A5%E4%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">清华大学网络研究院2020网络与系统安全学术研究成果汇报会</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CDN-Judo-Breaking-the-CDN-DoS-Protection-with-Itself"><span class="nav-number">1.1.1.</span> <span class="nav-text">CDN Judo: Breaking the CDN DoS Protection with Itself</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Poison-Over-Troubled-Forwarders-A-Cache-Poisoning-Attack-Targeting-DNS-Forwarding-Devices"><span class="nav-number">1.1.2.</span> <span class="nav-text">Poison Over Troubled Forwarders: A Cache Poisoning Attack Targeting DNS Forwarding Devices</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Talking-with-Familiar-Strangers-An-Empirical-Study-on-HTTPS-Context-Confusion-Attacks"><span class="nav-number">1.1.3.</span> <span class="nav-text">Talking with Familiar Strangers: An Empirical Study on HTTPS Context Confusion Attacks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lies-in-the-Air-Characterizing-Fake-base-station-Spam-Ecosystem-in-China"><span class="nav-number">1.1.4.</span> <span class="nav-text">Lies in the Air: Characterizing Fake-base-station Spam Ecosystem in China</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Finding-Cracks-in-Shields-On-the-Security-of-Control-Flow-Integrity-Mechanisms"><span class="nav-number">1.1.5.</span> <span class="nav-text">Finding Cracks in Shields: On the Security of Control Flow Integrity Mechanisms</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FANS-Fuzzing-Android-Native-System-Services-via-Automated-Interface-Analysis"><span class="nav-number">1.1.6.</span> <span class="nav-text">FANS: Fuzzing Android Native System Services via Automated Interface Analysis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Poseidon-Mitigating-Volumetric-DDoS-Attacks-with-Programmable-Switches"><span class="nav-number">1.1.7.</span> <span class="nav-text">Poseidon: Mitigating Volumetric DDoS Attacks with Programmable Switches</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#When-Match-Fields-Do-Not-Need-to-Match-Buffered-Packets-Hijacking-in-SDN"><span class="nav-number">1.1.8.</span> <span class="nav-text">When Match Fields Do Not Need to Match: Buffered Packets Hijacking in SDN</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DataCon%E7%AB%9E%E8%B5%9B%E5%88%86%E4%BA%AB"><span class="nav-number">1.2.</span> <span class="nav-text">DataCon竞赛分享</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ArthurLee</p>
+  <div class="site-description" itemprop="description">随便写写</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/lirenjieArthur" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;lirenjieArthur" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ArthurLee</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
