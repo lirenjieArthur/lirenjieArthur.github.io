@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>anaconda常用命令</title>
+    <url>/2018/08/31/anaconda/</url>
+    <content><![CDATA[<p>anaconda使用记录</p>
+<span id="more"></span>
+<blockquote>
+<p>conda env list // 列出conda管理的所有环境</p>
+</blockquote>
+<blockquote>
+<p>conda list // 列出当前环境的所有包</p>
+</blockquote>
+<blockquote>
+<p>conda install requests 安装requests包</p>
+</blockquote>
+<blockquote>
+<p>conda update requests 更新requests包</p>
+</blockquote>
+<blockquote>
+<p>conda remove requests 卸载requets包</p>
+</blockquote>
+<blockquote>
+<p>conda remove -n your_env_name --all // 删除指定环境及下属所有包</p>
+</blockquote>
+<blockquote>
+<p>conda create --name env_new --clone env_old //克隆环境</p>
+</blockquote>
+<blockquote>
+<p>conda create -n py36 python=3.6 创建环境，指定版本</p>
+</blockquote>
+<blockquote>
+<p>activate/deactivate env_name 激活/退出环境</p>
+</blockquote>
+<blockquote>
+<p>conda env export &gt; environment.yaml // 导出当前环境的包信息</p>
+</blockquote>
+<blockquote>
+<p>conda env create -f environment.yaml // 用配置文件创建新的虚拟环境</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>anaconda</category>
+      </categories>
+      <tags>
+        <tag>教程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Inforsec参会小结</title>
+    <url>/2021/06/27/%E5%8F%82%E4%BC%9A%E6%8A%A5%E5%91%8A-inforsec/</url>
+    <content><![CDATA[<h1 id="inforsec网络空间安全宣传周系列活动">Inforsec网络空间安全宣传周系列活动</h1>
+<p>今年国家网络安全宣传周的主题是“网络安全为人民，网络安全靠人民“。本次活动是由清华大学、中科院软件所、奇安信集团、论客科技（广州）有限公司、北京信息科学与技术国家研究中心、InForSec论坛、DataCon大赛组委会等联合举办，于9月19日~9月20日在清华大学和中科院软件所两地举行。</p>
+<p>本次活动有两天，第一天在清华大学，第二天在软件所，由于时间关系只参与了19日在清华举办的活动。由于清华限制入校人数，所以通过提前预约，得到了宝贵的到线下参会的机会，有幸去到清华现场听取各路大佬的报告，感受到了顶尖的安全研究人员的魅力。</p>
+<p>19日的活动内容主要包括三个：</p>
+<ul>
+<li>清华大学网络研究院2020 网络与系统安全学术研究成果汇报会</li>
+<li>DataCon竞赛分享</li>
+<li>Coremail邮件安全竞赛与THUCTF启动仪式</li>
+</ul>
+<p>本次参会主要听取了前两项。</p>
+<span id="more"></span>
+<h2 id="清华大学网络研究院2020网络与系统安全学术研究成果汇报会">清华大学网络研究院2020网络与系统安全学术研究成果汇报会</h2>
+<p>19日上午是清华网研院的研究成果汇报会，主要由清华的研究人员分享他们NDSS‘20、USENIX Seccurity’20和CCS‘20上发表的8篇论文。内容涉及到CDN安全、DDoS攻击、数据驱动安全、CFI、Fuzz、SDN等诸多领域。</p>
+<h3 id="cdn-judo-breaking-the-cdn-dos-protection-with-itself">CDN Judo: Breaking the CDN DoS Protection with Itself</h3>
+<blockquote>
+<p>汇报人：<a href="https://netsec.ccert.edu.cn/chs/people/gr15">郭润</a> 15级博士研究生</p>
+<p>会议：NDSS‘20 <a href="https://www.ndss-symposium.org/ndss-paper/cdn-judo-breaking-the-cdn-dos-protection-with-itself/">paper&amp;slides</a></p>
+</blockquote>
+<p>这是之前我在讨论班讲过的一篇论文，因此参会时听起来没什么困难，与我之前的理解一致。</p>
+<p>作者发现有部分CDN服务商在转发机制上存在实现缺陷或协议缺陷，使得攻击者可以攻破CDN的保护机制。通过向CDN发送精心构造的但是合法的数据包，攻击者可以对在CDN保护下的源站发起有效的DoS攻击。作者共发现了三种攻击方式，并在市场份额较高的6个CDN服务商进行了测试，并在实际的使用场景下发起三种攻击，评估了攻击造成的实际影响。</p>
+<p>三种攻击方式有：</p>
+<ul>
+<li>滥用CDN的HTTP/2协议转换，实现<strong>HTTP/2放大攻击</strong></li>
+<li>滥用CDN的Pre-Post处理机制，实现<strong>Pre-POST慢速HTTP攻击</strong></li>
+<li>利用CDN的入站IP和出站IP数量的差距以及出站IP的较低的切换频率，实现<strong>出口IP阻塞攻击</strong></li>
+</ul>
+<p>详细内容可见会议ppt以及讨论班ppt（2020年MESA学生讨论班第21期）</p>
+<h3 id="poison-over-troubled-forwarders-a-cache-poisoning-attack-targeting-dns-forwarding-devices">Poison Over Troubled Forwarders: A Cache Poisoning Attack Targeting DNS Forwarding Devices</h3>
+<blockquote>
+<p>汇报人：郑晓峰 博士研究生</p>
+</blockquote>
+<blockquote>
+<p>会议：USENIX Seccurity’20 <a href="https://www.usenix.org/conference/usenixsecurity20/presentation/zheng">paper&amp;slides</a></p>
+</blockquote>
+<p>此前的DNS缓存投毒往往关注DNS递归解析器（recursive resolvers），很少关注DNS转发器（forwarders）。递归解析器和转发器的关系如下图，转发器往往是家庭路由器或者是公共场所的WIFI，它们往往都具备缓存功能，并且需要依赖上游的解析器（也就是递归解析器）。</p>
+<p><img src="https://lrj-typora.oss-cn-beijing.aliyuncs.com/img/image-20201021153634436.png" /></p>
+<p>由于RFC 5452中规定DNS解析程序应该使用随机的端口号和事务ID，如下图。因此针对递归解析器的缓存投毒攻击需要猜解这两个字段，猜解的空间范围是<span class="math inline">\(2^{32}\)</span>。</p>
+<p><img src="https://lrj-typora.oss-cn-beijing.aliyuncs.com/img/image-20201021155331645.png" /></p>
+<p><strong>攻击迁移</strong>：为了减少猜解的空间范围，作者提出了一种利用IP分片机制，针对DNS转发器的缓存投毒攻击。由于目前的大多数OS的PMTU都支持大于512字节，因此在客户端操作系统造成分比较困难。所以就将攻击目标转向DNS转发器，这些转发器的PMTU往往只有512字节，因此借助IP分片，攻击者只需要伪装成第二个报文，让转发器先缓存，再等待第一个分片报文，转发器遇到相同IPID的分片报文会当作一个完整的数据包。这样一来攻击者只需要猜解转发器上游的递归解析器的IPID即可，这样猜解范围降到<span class="math inline">\(2^{16}\)</span>，同时现有的OS上生成的IPID很多都是基于hash或是有一定的范围，使得攻击成本进一步降低。</p>
+<p>威胁模型如下：</p>
+<p><img src="https://lrj-typora.oss-cn-beijing.aliyuncs.com/img/image-20201021155920353.png" /></p>
+<p>攻击者需要和DNS转发器处于同一个LAN中，并且为了稳定的构造分片，攻击者需要控制一个权威域名服务器来回复一个很长的CNAME链，如下图；同时DNS转发器没有额外的安全机制，完全依赖于上游的递归解析器。</p>
+<p><img src="https://lrj-typora.oss-cn-beijing.aliyuncs.com/img/image-20201021161422533.png" /></p>
+<p><strong>攻击流程</strong>：</p>
+<p><img src="https://lrj-typora.oss-cn-beijing.aliyuncs.com/img/image-20201021161458356.png" /></p>
+<ol type="1">
+<li>攻击者先随便向递归解析器发送一个请求，得到一个带有IPID的响应，预测下一个IPID。向转发器发送一个完整数据包的第二分片，伪装成递归解析器发给转发器的数据包，携带有指向victim.com的恶意地址，使得转发器把该分片缓存，等待第一分片。</li>
+<li>向发起指向攻击者控制的域名的请求，请求会到达攻击者控制的ADNS。</li>
+<li>ADNS端用CNAME填充响应，返回一个大于MTU的响应。递归解析器把该响应分片后发给转发器。</li>
+<li>转发器将第一分片与之前缓存的第二分片重组，作为完整的响应。最终实现缓存投毒的效果。</li>
+</ol>
+<p>实现该攻击有<strong>四个条件</strong>：</p>
+<ol type="1">
+<li>转发器要按记录（by record）进行DNS缓存，这也是目前大多数转发器的实现方式。</li>
+<li>支持EDNS(0)。<br />
+</li>
+<li>转发器不会主动截断DNS响应。</li>
+<li>转发器不对响应进行验证。</li>
+</ol>
+<p><strong>现实环境评估</strong>：</p>
+<p>测试了16款路由器，8个存在该漏洞；7款DNS软件，2个存在漏洞。</p>
+<p>在20k客户端上进行测试，发现40%不支持EDNS(0)，6.6%存在受攻击的风险。</p>
+<p><strong>攻击缓解</strong>：</p>
+<ul>
+<li>短期解决方案：按响应进行DNS缓存</li>
+<li>对DNS响应进行验证（部署DNSSEC等）</li>
+</ul>
+<p>问题根源：</p>
+<ul>
+<li>缺乏明确的DNS转发器准则
+<ul>
+<li>转发器到底要扮演什么角色？</li>
+<li>应该支持哪些特性？</li>
+</ul></li>
+</ul>
+<h3 id="talking-with-familiar-strangers-an-empirical-study-on-https-context-confusion-attacks">Talking with Familiar Strangers: An Empirical Study on HTTPS Context Confusion Attacks</h3>
+<blockquote>
+<p>汇报人：<a href="https://netsec.ccert.edu.cn/chs/people/zmm18">张明明</a> 18级博士研究生</p>
+</blockquote>
+<blockquote>
+<p>会议：CCS‘20 <a href="https://dl.acm.org/doi/10.1145/3372297.3417252">paper</a>&amp;slides（暂未公开）</p>
+</blockquote>
+<p>此前针对SSL/TLS的MITM攻击有两种：</p>
+<ul>
+<li>SSL Stripping Attack</li>
+<li>SSL Sniffing Attack</li>
+</ul>
+<p>本文提出了一种新型的HTTPS加密流量劫持攻击，无需HTTP明文协议的配合即可攻击，即使用户访问的目标网站部署了HTTPS的最佳实践措施，攻击者仍然可以劫持篡改用户与网站之间的加密通信，可导致网站支付劫持、下载文件替换等严重的后果。</p>
+<p>这个攻击比较有意思，在现场也以视频的形式展示了针对京东支付的劫持，用户完全无感，且浏览器始终没有提示存在风险。</p>
+<p><strong>攻击前提</strong>：证书共享，多个domain共享同一个证书，存在安全依赖关系，如下图，安全性就取决于最弱的那个网站。</p>
+<p><img src="https://lrj-typora.oss-cn-beijing.aliyuncs.com/img/image-20201021181506806.png" /></p>
+<ul>
+<li>一个证书被多个domain共享</li>
+<li>多个服务器共同部署同一个证书</li>
+</ul>
+<p><strong>威胁模型</strong>：</p>
+<p><img src="https://lrj-typora.oss-cn-beijing.aliyuncs.com/img/image-20201021191745799.png" /></p>
+<p>攻击者通过中间人的方式，劫持客户端的HTTPS请求到一个与server A共享证书的server B，server A有严格安全策略（例如HSTS），server B存在有缺陷的安全策略（不强制客户端使用HTTPS）。对请求①，攻击者中断客户端和server A的连接，重新与server B建立连接。server B给返回存在缺陷的响应（不安全的302跳转、错配置的HSTS头 等），同时附有与A共享的证书。</p>
+<p>这样在客户端看来，访问的是server A，实际上是与server B建立的连接。</p>
+<p>作者把这种攻击叫做HTTPS Context Confusion Attack (<strong>SCC Attack</strong>)，被Confusion的包括server、browser、用户。</p>
+<p><strong>SCC的两个攻击场景</strong>：</p>
+<ul>
+<li><p>HTTPS降级攻击（downgrading attack）</p>
+<p>利用B返回的不安全的302 HTTP跳转</p>
+<ul>
+<li><p>单级降级</p>
+<p>通过一次3xx重定向，将到server A的HTTPS连接降级为到server B的HTTP连接</p></li>
+<li><p>多级降级</p>
+<p>通过多次3xx重定向，将到server A的HTTPS连接降级为到server B的HTTP连接</p>
+<p><img src="https://lrj-typora.oss-cn-beijing.aliyuncs.com/img/image-20201021194028756.png" /></p></li>
+</ul></li>
+<li><p>HSTS Bypass攻击</p></li>
+</ul>
+<p>Web服务器可以通过HSTS策略（在HTTP响应头中设置 Strict-Transport-Security，STS）强制客户端浏览器使用HTTPS。但是HSTS存在误配置或者部署不全面，攻击者可以利用实际部署中的缺陷来绕过HSTS策略，可以达到三种不同程度的攻击效果。</p>
+<ul>
+<li>清除server A的HSTS策略
+<ul>
+<li>HSTS的<code>max-age=0</code></li>
+</ul></li>
+<li>取消server A子域的HSTS策略
+<ul>
+<li><code>&lt;no includeSubdomain&gt;</code></li>
+</ul></li>
+<li>缩短server A的HSTS有效期
+<ul>
+<li><code>max-age=&lt;smaller-than-A&gt;</code></li>
+</ul></li>
+</ul>
+<p><strong>不同连接状态下的攻击时间点选择</strong>：</p>
+<p><img src="https://lrj-typora.oss-cn-beijing.aliyuncs.com/img/image-20201021200108123.png" alt="image-20201021200108123" style="zoom: 67%;" /></p>
+<ul>
+<li><p>case A</p>
+<p>要劫持的域是一个只服务于单个资源的专用域，可以通过DNS缓存投毒劫持。</p></li>
+<li><p>case B</p>
+<p>要劫持的域是一个通过不同path服务于多个资源的域，攻击者并不能劫持所有流量到server B，需要在识别出特定的path（通过HTTPS Path Leaks）。只能在握手过程中进行劫持。</p></li>
+<li><p>case C</p>
+<p>要劫持已经建立连接的长连接，需要在特定条件下触发TLS Re-handshake。</p></li>
+</ul>
+<p>此外，作者也在现实世界中进行了测量，发现25.2%的Alexa Top500网站的子域会受到SCC攻击的影响。并且还挖掘了不同网站之间的安全依赖关系等问题，详细内容见paper。</p>
+<h3 id="lies-in-the-air-characterizing-fake-base-station-spam-ecosystem-in-china">Lies in the Air: Characterizing Fake-base-station Spam Ecosystem in China</h3>
+<blockquote>
+<p>汇报人：<a href="https://netsec.ccert.edu.cn/chs/people/zym17">张一铭</a> 17级博士研究生</p>
+</blockquote>
+<blockquote>
+<p>会议：CCS‘20 <a href="https://luchaoyi.com/paper/ccs20-fbs.pdf">paper</a>&amp;slides</p>
+</blockquote>
+<p>这是一篇数据驱动的研究论文，通过和360手机安全卫士合作，收集志愿用户的97天的短信数据，对国内的垃圾短信生态进行了比较详细的研究。</p>
+<p>对于这个演讲没做详细的记录，但是其中的团伙发现、行踪分析等内容个人感觉还是比较有趣的，印象比较深刻。作为数据驱动的研究，分析方式确实很重要，作者通过大量的数据发现问题的思路很值得学习。</p>
+<h3 id="finding-cracks-in-shields-on-the-security-of-control-flow-integrity-mechanisms">Finding Cracks in Shields: On the Security of Control Flow Integrity Mechanisms</h3>
+<blockquote>
+<p>汇报人：<a href="https://netsec.ccert.edu.cn/chs/people/lydora18">李媛</a> 18级博士研究生</p>
+</blockquote>
+<blockquote>
+<p>会议：CCS‘20 <a href="https://dl.acm.org/doi/10.1145/3372297.3417867">paper</a>&amp;slides</p>
+</blockquote>
+<p>这是一个有关控制流完整性的研究，控制流完整性（CFI）是缓解控制流劫持攻击的一种很有前途的技术， 在过去的十年中，研究人员提出了数十种CFI机制，但是这些CFI机制的安全性并未被仔细地评估。本文提出了一种解决方案，用于测量实际安全性与理论安全性之间的差距。</p>
+<h3 id="fans-fuzzing-android-native-system-services-via-automated-interface-analysis">FANS: Fuzzing Android Native System Services via Automated Interface Analysis</h3>
+<blockquote>
+<p>汇报人：刘保证 毕业硕士生 目前就职于华为可信计算实验室</p>
+</blockquote>
+<blockquote>
+<p>会议：USENIX Seccurity’20 <a href="https://www.usenix.org/conference/usenixsecurity20/presentation/liu">paper&amp;slides</a></p>
+</blockquote>
+<p>针对安卓原生系统服务的fuzz。</p>
+<h3 id="poseidon-mitigating-volumetric-ddos-attacks-with-programmable-switches">Poseidon: Mitigating Volumetric DDoS Attacks with Programmable Switches</h3>
+<blockquote>
+<p>汇报人：<a href="https://zhangmenghao.github.io/">张梦豪</a> 16级博士研究生</p>
+</blockquote>
+<blockquote>
+<p>会议：NDSS‘20 <a href="https://www.ndss-symposium.org/ndss-paper/poseidon-mitigating-volumetric-ddos-attacks-with-programmable-switches/">paper&amp;slides</a></p>
+</blockquote>
+<p>在可编程交换机上实现的DDoS防护方案，做的工作十分全面。内容较多，并且作者在汇报时语速很快，没有详细记录。</p>
+<p>现如今的DDoS防护往往都是基于CDN或是流量清洗中心的解决方案，但是并不能满足低延迟、低成本、敏捷部署的要求。而可编程交换设备的出现就可以弥补这些不足，具有以下优势：</p>
+<ul>
+<li>可编程，灵活性高</li>
+<li>功耗、处理能力与现有的交换机基本一致，单位成本更低</li>
+<li>高数据包处理速度，可以达到线速，比交换机高几个数量级的吞吐量和更低的延迟</li>
+</ul>
+<p>为了实现基于可编程交换设备的DDoS，有三个主要挑战：</p>
+<ol type="1">
+<li><p>防御策略的表达</p>
+<p>基于P4、DPDK抽象出一层自定义的语言（原语）。</p></li>
+<li><p>防御资源协调</p>
+<p>防御原语解析、防御原语部署。</p></li>
+<li><p>应对不同攻击的动态调整</p>
+<p>为了防止切换时的断流问题，采取状态备份的方式，将系统状态备份到后端server。</p></li>
+</ol>
+<h3 id="when-match-fields-do-not-need-to-match-buffered-packets-hijacking-in-sdn">When Match Fields Do Not Need to Match: Buffered Packets Hijacking in SDN</h3>
+<blockquote>
+<p>汇报人：谢仁杰 即将入学的博士生</p>
+</blockquote>
+<blockquote>
+<p>会议：NDSS‘20 <a href="https://www.ndss-symposium.org/ndss-paper/when-match-fields-do-not-need-to-match-buffered-packets-hijacking-in-sdn/">paper&amp;slides</a></p>
+</blockquote>
+<p>针对SDN的Buffer ID的劫持攻击。未作记录，详细内容可见paper&amp;slides。</p>
+<h2 id="datacon竞赛分享">DataCon竞赛分享</h2>
+<p>邀请了比赛中各个方向拿了第一名的队伍进行分享，主要听取了加密流量解题思路的分享。</p>
+<p>详细内容见<a href="https://datacon.qianxin.com/blog/archives/category/%E8%B5%9B%E9%A2%98writeup">赛题writeup</a></p>
+]]></content>
+      <categories>
+        <category>参会小结</category>
+      </categories>
+      <tags>
+        <tag>inforsec</tag>
+        <tag>academic conference</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>WSDM22-Deep Graph-level Anomaly Detection by Glocal Knowledge Distillation</title>
+    <url>/2022/04/05/Distillation/</url>
+    <content><![CDATA[<h1 id="deep-graph-level-anomaly-detection-by-glocal-knowledge-distillation">Deep Graph-level Anomaly Detection by Glocal Knowledge Distillation</h1>
+<p>Keywords: GAD(Graph-level anomaly detection), Knowledge distillation</p>
+<p>Method: joint random distillation of graph and node representations（training one GNN to predict another GNN with randomly initialized network weights）</p>
+<span id="more"></span>
+<h2 id="intro">Intro</h2>
+<p>目前GAD在医药领域应用较多，但是对于其他数据的关注较少。</p>
+<p>挑战在于：GAD需要捕捉local级和global级的patterns，这就需要能够识别 locally-anomalous graph 和 globally-anomalous graph</p>
+<p>GAD不同于基于时序数据检测图结构变化的这种研究（Time-evolving Graphs，unusual changes in graph structure from a time-evolving sequence of a single graph，单个图的异常变化），GAD是要在一组不具有时间顺序且节点特征/图结构多样的图中识别异常（这方面的研究还 less explored）。</p>
+<p>基于AE、GAN等技术的异常检测应用于GAD的挑战在于，这些方法依赖重构误差进行异常度量，但是从一个图向量重构（生成）图仍然不够准确。单分类模型也可以用于GAD，可以直接在基于GNN的图形表示之上优化SVDD objective，但是仅针对全局异常（globally-anomalous graph），同时它的性能在很大程度上受到SVDD的单类超球面（one-class hypersphere）假设的限制，因为在现实世界的数据集中，正常数据往往更为复杂。</p>
+<p>random representation distillation: predictor network用来学习产生于random network相同的表示。随机蒸馏同时应用于图级别和节点级别，模型可学习到<strong>glocal</strong>的图模式。当训练数据中大多数都是 normal 的图，学到的图的 pattern 就是多尺度的图 regularity/normality 。异常的图会表现出node/graph-level irregularity/abnormality，导致predictor很难给出准确的预测，因此prediction error相比normal图会很大，这里的prediction error就可以作为一个 anomaly score，用来检测node/graph级别的异常。</p>
+<h2 id="contribution">Contribution</h2>
+<ol type="1">
+<li>形式化了GAD问题，将其作为一种locally/globally-anomalous graph检测问题，并且在数据机上验证了这两种anomalies</li>
+<li>一个新的深度学习异常检测框架，建模了glocal graph regularity，端到端地学习anomaly score</li>
+<li>给出了GLocalKD，通过最小化随机GCN的预测误差，实现了node/graph级别的joint random distillation。不需要图生成，少量的训练数据就可以学到多样的glocal normal patterns，同时对anomaly contamination鲁棒（适用于unsupervised/semi-supervised）。</li>
+</ol>
+<h2 id="related-work">Related Work</h2>
+<p><strong>GAD</strong></p>
+<p>与此前的工作不同，GAD不是在单个图上检测异常（节点分类/边分类）。</p>
+<ul>
+<li><p>Time-evolving Graphs：现有的大多数GAD都是处理时序的图，这些方法是用于处理结构非常相似的时间相关图，并且难以推广到结构和/或描述特征变化较大的图上。</p></li>
+<li><p>Static Graphs：在一组静态图中进行异常图检测的工作要少得多。</p>
+<ul>
+<li><p>图representation（Graph2Vec、InfoGraph）或图kernel（Weisfeiler-Leman kernel、propagation kernel）：基于向量化的图表示，用iForest、LOF、OCSVM进行异常检测。图表示和检测器是分开学习的，得到的是suboptimal representations。</p></li>
+<li><p>提取graph-level patterns：不同领域或应用场景的图中可能会有很大差异，效果有限</p></li>
+</ul></li>
+<li><p>Deep Learning-based Methods：大多数方法依赖于data reconstruction/generative models，重构/生成图的困难很大程度上阻碍了GAD深度方法的发展。Zhao等指出Deep SVDD objective 可以用于GNN-based的GAD，但是仅考虑 high-level的图异常且仍然受限于SVDD度量。</p></li>
+</ul>
+<p><strong>Knowledge Distillation</strong></p>
+<p>知识蒸馏</p>
+<p>最早是[<a href="https://arxiv.org/abs/1503.02531">1503.02531] Distilling the Knowledge in a Neural Network (arxiv.org)</a>提出，后续被扩展到AD领域。</p>
+<p>所有方法都是训练一个student网络去distill一个基于大规模数据预训练的teacher网络的知识。对于图数据来说，没有一个通用的pretrained teacher networks，并且不同领域的图数据差别比较大，也限制了这种方法在图上的应用。</p>
+<p>随机知识蒸馏：最初在[<a href="https://arxiv.org/abs/1810.12894">1810.12894] Exploration by Random Network Distillation (arxiv.org)</a>中被用来解决深度强化学习(DRL)中的<a href="https://zhuanlan.zhihu.com/p/133334392#:~:text=%20%E7%A8%80%E7%96%8F%E5%A5%96%E5%8A%B1%E9%97%AE%E9%A2%98%E6%98%AF%E6%8C%87agent%E6%8E%A2%E7%B4%A2%E7%9A%84%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%9A%BE%E4%BB%A5%E8%8E%B7%E5%BE%97%E6%AD%A3%E5%A5%96%E5%8A%B1%EF%BC%8C%E5%AF%BC%E8%87%B4%E5%AD%A6%E4%B9%A0%E7%BC%93%E6%85%A2%E7%94%9A%E8%87%B3%E6%97%A0%E6%B3%95%E8%BF%9B%E8%A1%8C%E5%AD%A6%E4%B9%A0%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%8C%E5%B9%B6%E4%B8%94%E5%B9%BF%E6%B3%9B%E5%AD%98%E5%9C%A8%E4%BA%8E%E7%8E%B0%E5%AE%9E%E4%B8%AD%EF%BC%8C%E6%AF%94%E5%A6%82%E5%9B%B4%E6%A3%8B%EF%BC%8C%E4%BA%BA%E4%BB%AC%E5%BE%88%E9%9A%BE%E5%8E%BB%E8%AE%BE%E5%AE%9A%E4%B8%AD%E9%97%B4%E6%AF%8F%E6%AD%A5%E7%9A%84%E5%A5%96%E5%8A%B1%EF%BC%8C%E5%B9%B6%E4%B8%94%E7%8A%B6%E6%80%81%E7%A9%BA%E9%97%B4%E5%B7%A8%E5%A4%A7%EF%BC%8C%E4%BD%BF%E7%94%A8%20%E5%85%A8%E5%B1%80%E5%A5%96%E5%8A%B1,%E4%BC%9A%E6%9C%89%E5%A5%96%E5%8A%B1%E7%A8%80%E7%96%8F%E4%B8%94%E6%BB%9E%E5%90%8E%E7%9A%84%E9%97%AE%E9%A2%98%E3%80%82%20%E5%AF%B9%E4%BA%8E%E7%A8%80%E7%96%8F%E5%A5%96%E5%8A%B1%E9%97%AE%E9%A2%98%E7%9A%84%E8%B5%84%E6%96%99%E9%A6%96%E5%85%88%E6%8E%A8%E8%8D%90%20%E6%9D%8E%E5%AE%8F%E6%AF%85%20%E8%80%81%E5%B8%88%E5%85%B3%E4%BA%8E%E7%A8%80%E7%96%8F%E5%A5%96%E5%8A%B1%E9%83%A8%E5%88%86%E7%9A%84%E8%AE%B2%E8%A7%A3%E5%92%8C%E5%9B%BD%E5%86%85%E8%BF%99%E7%AF%87%E7%A8%80%E7%96%8F%E5%A5%96%E5%8A%B1%E7%BB%BC%E8%BF%B0%E3%80%82">稀疏奖励问题</a>（agent探索的过程中难以获得正奖励，导致学习缓慢甚至无法进行学习的问题，并且广泛存在于现实中，比如围棋，人们很难去设定中间每步的奖励，并且状态空间巨大，使用全局奖励会有奖励稀疏且滞后的问题），使用随机蒸馏误差来衡量状态的新颖性，作为一些额外的奖励信号，以鼓励DRL Agent在稀疏奖励环境中进行探索。也被[<a href="https://arxiv.org/abs/1912.12186">1912.12186] Unsupervised Representation Learning by Predicting Random Distances (arxiv.org)</a>用来regularize unsupervised representation learning，在tabular data上更好地异常检测。GLocalKD也是基于这个思想，首次为GAD设计并且可以检测globally和locally的graph anomalies。</p>
+<h2 id="framework">Framework</h2>
+<h3 id="问题定义">问题定义</h3>
+<p>端到端的图级异常检测问题。</p>
+<p>一组正常样本 <span class="math inline">\(\mathcal{G}=\left\{G_{1}, G_{2}, \ldots, G_{M}\right\}\)</span>，学习出一个异常打分函数 <span class="math inline">\(f: \mathcal{G}\rightarrow \mathbb{R}\)</span>，参数为<span class="math inline">\(\Theta\)</span>，<span class="math inline">\(f\left(\hat{G}_{i} ; \Theta\right)&gt;f\left(\hat{G}_{j} ; \Theta\right)\)</span>表示<span class="math inline">\(\hat{G}_{j}\)</span>比<span class="math inline">\(\hat{G}_{i}\)</span>更符合 <span class="math inline">\(\mathcal{G}\)</span>。<span class="math inline">\(\mathcal{G}\)</span>中的每一个图都表示为<span class="math inline">\(G=(\mathcal{V}_{G}, \mathcal{E}_{G})\)</span>，用邻接矩阵<span class="math inline">\(\mathbf{A}^{G} \in \mathbb{R}^{N \times N}\)</span>来表示图结构，如果是attributed graph，那么<span class="math inline">\(\mathbf{x}_{i} \in \mathbb{R}^{n}\)</span>表示节点特征，否则就是一个plain graph。（GLocalKD可适用于两种图，同时在无监督下也表现良好，其中G受到异常污染，并包含一些未知的异常图）</p>
+<ul>
+<li>locally-anomalous graphs：给定一组图 <span class="math inline">\(\mathcal{G}=\left\{G_{i}\right\}_{i}^{M}\)</span> ，如果图 <span class="math inline">\(\hat{G}\)</span> 由于某些异常节点的存在而与<span class="math inline">\(\mathcal{G}\)</span>中的图不相符（异常节点明显偏离<span class="math inline">\(\mathcal{G}\)</span>中的图上的相似的节点），则<span class="math inline">\(\hat{G}\)</span> 是一个locally-anomalous graph。
+<ul>
+<li>与此前的不同之处在于，这是在一组独立且分离的图上进行检测，而不是一个图</li>
+</ul></li>
+<li>globally-anomalous graphs：给定一组图 <span class="math inline">\(\mathcal{G}=\left\{G_{i}\right\}_{i}^{M}\)</span> ，如果图 <span class="math inline">\(\hat{G}\)</span> 的holistic graph properties（整体的图性质）与<span class="math inline">\(\mathcal{G}\)</span>中的图不相符。</li>
+</ul>
+<p>目标就是训练一个检测模型，可以检测出这两种异常图。</p>
+<h3 id="end-to-end-scoring-framework">end-to-end scoring framework</h3>
+<figure>
+<img src="https://lrj-typora.oss-cn-beijing.aliyuncs.com/img/image-20220320161124644.png" alt="image-20220320161124644" /><figcaption aria-hidden="true">image-20220320161124644</figcaption>
+</figure>
+<p>random target network 和 predictor network，具有相同的架构，但有不同的distillation losses。</p>
+<p>训练predictor network来预测random target network得到的图级别和节点级别的表示。</p>
+<p><span class="math inline">\(L=L_{\text {graph }}+\lambda L_{\text {node }}\)</span></p>
+<p>$L_{} = <em>{G } K D(</em>{G}, _{G}) $</p>
+<p><span class="math inline">\(L_{\text {node }} =\frac{1}{|\mathcal{G}|} \sum_{G \in \mathcal{G}}\left(\frac{1}{|G|} \sum_{v_{i} \in \mathcal{V}_{G}} K D\left(\mathbf{h}_{i}, \hat{\mathbf{h}}_{i}\right)\right)\)</span></p>
+<p><span class="math inline">\(K D\left(\cdot, \cdot \right)\)</span> 是distillation function，用来衡量两个表示之间的差异</p>
+<p>训练步骤：</p>
+<ol type="1">
+<li>先随机初始化一个图网络 <span class="math inline">\(\hat{\phi}\)</span> （target），有固定权重<span class="math inline">\(\hat{\Theta}\)</span>，生成图表示和节点表示</li>
+<li>设置 predictor network <span class="math inline">\(\phi\)</span>，结构与 <span class="math inline">\(\hat{\phi}\)</span> 相同，参数为 <span class="math inline">\(\Theta\)</span>，训练其去预测<span class="math inline">\(\hat{\phi}\)</span>生成的表示</li>
+<li>最小化 L</li>
+</ol>
+<p>在评估阶段， <strong>anomaly score</strong> 定义为：<span class="math inline">\(f\left(G ; \hat{\boldsymbol{\Theta}}, \Theta^{*}\right)=K D\left(\mathbf{h}_{G}, \hat{\mathbf{h}}_{G}\right)+\lambda \frac{1}{|G|} \sum_{v_{i} \in \mathcal{V}_{G}} K D\left(\mathbf{h}_{i}, \hat{\mathbf{h}}_{i}\right)\)</span>，其中 <span class="math inline">\(\Theta^{*}\)</span> 是 predictor network 中可学习的参数。</p>
+<h4 id="key-intuition">Key Intuition</h4>
+<p>联合随机蒸馏迫使预测网络的图表示和节点表示尽可能接近正常图数据上固定随机目标网络的相应输出。果模式频繁出现在随机表示空间中，则模式将被更好地提取，预测误差就会较小。</p>
+<h2 id="global-and-local-knowledge-distillationglocalkd">Global and Local Knowledge Distillation（GLocalKD）</h2>
+<p>上述的framework通过GLocalKD实现。</p>
+<p>使用GCN学习node/graph表示，使用均方误差作为损失函数。</p>
+<h3 id="gnn结构">GNN结构</h3>
+<ul>
+<li>Random Target Network</li>
+</ul>
+<p>GCN, GAT and GIN都可以作为学习表示的方法。本文使用<strong>GCN</strong>，是因为GCN及其变体已经证明了它们学习图形表达特征的能力和良好的计算效率。</p>
+<p><span class="math inline">\(\hat{\phi}(\cdot, \hat{\Theta}): G=\left(\mathcal{V}_{G}, \mathcal{E}_{G}\right) \rightarrow \mathbb{R}^{N \times k}\)</span> ，N是一个图中的节点数，k是节点表示的维度。</p>
+<p><span class="math inline">\(\hat{\mathbf{h}}_{i}^{l}=\rho\left(\sum_{j \in \widetilde {\mathcal{N}}(i)} \frac{1}{\sqrt{\widetilde {\mathbf{D}}(i, i) \widetilde {\mathbf{D}}(j, j)}} \hat{\mathbf{h}}_{j}^{l-1} \hat{\Theta}^{l-1}\right)\)</span>，节点 <span class="math inline">\(v_i\)</span> 在第 <span class="math inline">\(l\)</span> 层的表示，<span class="math inline">\(\widetilde{\mathcal{N}}(i)=\mathcal{N}(i) \cup\left\{v_{i}\right\}\)</span> ，<span class="math inline">\(\mathcal{N}(i)\)</span> 是一阶邻居，<span class="math inline">\(\mathbf{D}\)</span> 是度矩阵，<span class="math inline">\(\widetilde{\mathbf{D}} = \mathbf{D}+\mathbf{I}\)</span>。最后输出第K层的表示。</p>
+<p>第0层用节点特征（对于plain graph，仅使用度矩阵作为节点特征）。</p>
+<p>使用 max-pooling （aggregate extreme features across the node representations）作为readout函数。</p>
+<p><span class="math inline">\(\hat{\mathbf{h}}_{G}=\max \left\{\hat{\mathbf{h}}_{i}, \forall v_{i} \in \mathcal{V}_{G}\right\}\)</span></p>
+<ul>
+<li>predictor network</li>
+</ul>
+<p>唯一的区别就是参数不是固定的，需要学习 <span class="math inline">\(\Theta\)</span>。</p>
+<h3 id="glocal-regularity-distillation">Glocal Regularity Distillation</h3>
+<p>通过最小化predictor network和Random Target Network产生的（图和节点级）表示之间的距离来实现全局规律提取。</p>
+<p>使用均方误差作为损失函数。</p>
+<p><span class="math inline">\(L_{\text {graph }}=\frac{1}{|\mathcal{G}|} \sum_{G \in \mathcal{G}}\left\|\mathbf{h}_{G}-\hat{\mathbf{h}}_{G}\right\|^{2}\)</span>$</p>
+<p><span class="math inline">\(L_{\text {node }}=\frac{1}{|\mathcal{G}|} \sum_{G \in \mathcal{G}}\left(\frac{1}{|G|} \sum_{v_{i} \in \mathcal{V}_{G}}\left\|\mathbf{h}_{i}-\hat{\mathbf{h}}_{i}\right\|^{2}\right)\)</span></p>
+<p><span class="math inline">\(L=L_{\text {graph }}+ L_{\text {node }}\)</span>，考虑到local和global同等重要，<span class="math inline">\(\lambda\)</span> 设为1。</p>
+<h3 id="anomaly-detection-of-using-glocalkd">Anomaly Detection of Using GLocalKD</h3>
+<p>使用anomaly score评估异常。<span class="math inline">\(f\left(G ; \hat{\boldsymbol{\Theta}}, \Theta^{*}\right)=\left\|\mathbf{h}_{G}-\hat{\mathbf{h}}_{G}\right\|^{2} +\frac{1}{|G|} \sum_{v_{i} \in \mathcal{V}_{G}}\left\|\mathbf{h}_{i}-\hat{\mathbf{h}}_{i}\right\|^{2}\)</span></p>
+<h3 id="理论分析">理论分析</h3>
+<p>GLocalKD通常可以为异常图产生比正常图更大的异常分值。</p>
+<p>考虑数据分布为 <span class="math inline">\(\hat{\mathcal{G}}=\left\{G_{i}, y_{i}\right\}_{i}\)</span> 且有一个Bayesian setting（在GCN <span class="math inline">\(\phi\left(\cdot, \Theta^{\star}\right)\)</span> 的参数上考虑先验 <span class="math inline">\(p(\Theta^{\star})\)</span>）的回归问题，可以被定义为如下优化问题：</p>
+<p><span class="math inline">\(\min _{\Theta} \mathrm{E}_{\left(G_{i}, y_{i}\right) \sim \hat{G}}\left\|\phi\left(G_{i}, \Theta\right)+\phi\left(G_{i}, \Theta^{\star}\right)-y_{i}\right\|^{2}+\mathcal{R}(\Theta)\)</span></p>
+<p><span class="math inline">\(\mathcal{R}(\Theta)\)</span> 是先验的正则项，<span class="math inline">\(\mathcal{F}\)</span> 是函数 <span class="math inline">\(f_{\Theta}=\phi(\cdot, \Theta)+\phi\left(\cdot, \Theta^{\star}\right)\)</span>上的分布，<span class="math inline">\(\Theta\)</span> 是上式的解，<span class="math inline">\(\Theta^{\star}\)</span> 是从先验得到的，<span class="math inline">\(\mathcal{F}\)</span> 可以被看作是一种对后验的近似。</p>
+<p>当选择来自同一分布的graph，并且把标签 <span class="math inline">\(y_{i}\)</span> 设置为0，优化问题就变成：<span class="math inline">\(arg \min _{\Theta} \mathrm{E}_{\left(G_{i}, y_{i}\right) \sim \hat{G}}\left\|\phi\left(G_{i}, \Theta\right)+\phi\left(G_{i}, \Theta^{\star}\right)\right\|^{2}\)</span>，相当于从先验中蒸馏出随机的函数。</p>
+<p>predictor network 的预测误差就将是两个网络的结果的预测方差的估计。</p>
+<h2 id="experiment-and-results">Experiment and Results</h2>
+<h3 id="dataset">dataset</h3>
+<p>16个现有数据集</p>
+<p>attributed graphs：前六个</p>
+<p>plain graphs：其余</p>
+<p>HSE，MMP，P53和PPAR-Gamma是具有真正异常的数据集。其余的12个数据集是把少数类作为异常，进而转化为异常检测数据。（选择这些数据集主要是因为所选异常类中的图样本满足异常的一些关键语义，例如图在表示空间中分散或稀疏分布）</p>
+<figure>
+<img src="https://lrj-typora.oss-cn-beijing.aliyuncs.com/img/image-20220321002059082.png" alt="image-20220321002059082" /><figcaption aria-hidden="true">image-20220321002059082</figcaption>
+</figure>
+<p>1-15：<a href="https://chrsmrrs.github.io/datasets/">TUDataset | TUD Benchmark datasets (chrsmrrs.github.io)</a></p>
+<p>16：<a href="https://tdcommons.ai/">Therapeutics Data Commons - TDC (tdcommons.ai)</a></p>
+<h3 id="competing-methods">competing methods</h3>
+<p>Two-step Methods：先得到图表示，再用异常检测算法计算表示的异常分数。一共6个组合。</p>
+<ul>
+<li><a href="https://github.com/fanyun-sun/InfoGraph">InfoGraph</a>、<a href="https://github.com/ysig/GraKeL">WL</a>、<a href="https://github.com/ysig/GraKeL">PK graph kernel</a></li>
+<li><a href="https://github.com/scikit-learn/">iForest</a>、𝑘NN ensemble (<a href="https://github.com/GuansongPang/deep-outlier-detection/">LESINN</a>)</li>
+</ul>
+<p>End-to-end Methods：基于GCN表示学习，使用SVVD作为objective的OCGCN（one-class GCNbased method）</p>
+<h3 id="implementation-and-evaluation">Implementation and Evaluation</h3>
+<p>三层GCN（max pooling），hidden layer 512，output layer 256</p>
+<p>权重参数使用Kaiming uniform method初始化</p>
+<p>LR 1e-1~1e-5，</p>
+<p>​ ENZYMES, AIDS, DHFR, HSE, p53, MMP and PPAR-gamm：1e-5，其余 1e-4</p>
+<p>batch size：300，2000（HSE, MMP, p53 and PPAR-gamma）</p>
+<p>优化器 Adam</p>
+<p>评价指标 AUC （5-fold cross validation）</p>
+<h3 id="comparison-to-state-of-the-art-methods">Comparison to State-of-the-art Methods</h3>
+<p>在7个数据集上效果最好</p>
+<blockquote>
+<p>paired Wilcoxon signed rank test（计算p-value），衡量相优于其他方法的置信水平。相比iForest，置信水平99%，相比LESINN是85%~95%。</p>
+<p>配对威尔科克森有符号秩检验</p>
+<p>维基百科：A Wilcoxon signed-rank test is a nonparametric test that can be used to determine whether two dependent samples were selected from populations having the same distribution.</p>
+<p>Wilcoxon signed-rank test（<strong>威尔科克森符号秩检验</strong>）是一种非参的假设检验方法，它成对的检查 2 个数据集中的数据（即 paired difference test）来判断 2 个数据集是否来自相同分布的总体。</p>
+</blockquote>
+<p>执行效率：在online检测中，GLocalKD和OCGCN具有相似的时间复杂度，相比其他方法有更快的运行速度。GLocalKD和OCGCN通常比基于WL和PK的方法计算成本更高（训练成本），因为GLocalKD和OCGCN通常需要多次迭代才能很好地执行。</p>
+<h3 id="sample-efficiency">Sample Efficiency</h3>
+<p>衡量对样本数量的敏感性</p>
+<p>使用OCGCN 作为对比的baseline。即使减少了95%的数据，GLocalKD仍可以保持同样的良好性能。</p>
+<h3 id="对anomaly-contamination异常污染的鲁棒性"><strong>对Anomaly Contamination（异常污染）的鲁棒性</strong></h3>
+<p>考虑不同比例的contamination rates （0-16%）</p>
+<p>使用OCGCN 作为对比的baseline。GLocalKD表现更稳定。主要是因为GLocalKD本质上是通过随机蒸馏来学习训练数据中的所有类型的模式，从而能够检测出异常，只要这些异常模式不像训练数据中的正常模式那样频繁；而OCGCN是敏感的，因为它的异常度量SVDD对异常敏感。</p>
+<h3 id="sensitivity-test">Sensitivity Test</h3>
+<p>衡量对表示维度和GCN深度的敏感性。</p>
+<p>256维，三层</p>
+<h3 id="ablation-study">Ablation Study</h3>
+<p>衡量 <span class="math inline">\(L_{\text {graph }}\)</span> 和 <span class="math inline">\(L_{\text {node }}\)</span> 的重要性。</p>
+<p>因数据集而异，但整体来看还是二者结合好。</p>
+]]></content>
+      <categories>
+        <category>论文阅读</category>
+      </categories>
+      <tags>
+        <tag>GNN</tag>
+        <tag>DL</tag>
+      </tags>
+  </entry>
+</search>
