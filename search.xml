@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>WSDM22-Deep Graph-level Anomaly Detection by Glocal Knowledge Distillation</title>
-    <url>/2022/04/05/Distillation/</url>
+    <url>/2022/04/05/WSDM22-Glocal/</url>
     <content><![CDATA[<h1 id="deep-graph-level-anomaly-detection-by-glocal-knowledge-distillation">Deep Graph-level Anomaly Detection by Glocal Knowledge Distillation</h1>
 <p>Keywords: GAD(Graph-level anomaly detection), Knowledge distillation</p>
 <p>Method: joint random distillation of graph and node representations（training one GNN to predict another GNN with randomly initialized network weights）</p>
@@ -153,6 +153,52 @@
       <tags>
         <tag>GNN</tag>
         <tag>DL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>anaconda常用命令</title>
+    <url>/2018/08/31/anaconda/</url>
+    <content><![CDATA[<p>anaconda使用记录</p>
+<span id="more"></span>
+<blockquote>
+<p>conda env list // 列出conda管理的所有环境</p>
+</blockquote>
+<blockquote>
+<p>conda list // 列出当前环境的所有包</p>
+</blockquote>
+<blockquote>
+<p>conda install requests 安装requests包</p>
+</blockquote>
+<blockquote>
+<p>conda update requests 更新requests包</p>
+</blockquote>
+<blockquote>
+<p>conda remove requests 卸载requets包</p>
+</blockquote>
+<blockquote>
+<p>conda remove -n your_env_name --all // 删除指定环境及下属所有包</p>
+</blockquote>
+<blockquote>
+<p>conda create --name env_new --clone env_old //克隆环境</p>
+</blockquote>
+<blockquote>
+<p>conda create -n py36 python=3.6 创建环境，指定版本</p>
+</blockquote>
+<blockquote>
+<p>activate/deactivate env_name 激活/退出环境</p>
+</blockquote>
+<blockquote>
+<p>conda env export &gt; environment.yaml // 导出当前环境的包信息</p>
+</blockquote>
+<blockquote>
+<p>conda env create -f environment.yaml // 用配置文件创建新的虚拟环境</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>anaconda</category>
+      </categories>
+      <tags>
+        <tag>教程</tag>
       </tags>
   </entry>
   <entry>
@@ -363,52 +409,6 @@
       <tags>
         <tag>inforsec</tag>
         <tag>academic conference</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>anaconda常用命令</title>
-    <url>/2018/08/31/anaconda/</url>
-    <content><![CDATA[<p>anaconda使用记录</p>
-<span id="more"></span>
-<blockquote>
-<p>conda env list // 列出conda管理的所有环境</p>
-</blockquote>
-<blockquote>
-<p>conda list // 列出当前环境的所有包</p>
-</blockquote>
-<blockquote>
-<p>conda install requests 安装requests包</p>
-</blockquote>
-<blockquote>
-<p>conda update requests 更新requests包</p>
-</blockquote>
-<blockquote>
-<p>conda remove requests 卸载requets包</p>
-</blockquote>
-<blockquote>
-<p>conda remove -n your_env_name --all // 删除指定环境及下属所有包</p>
-</blockquote>
-<blockquote>
-<p>conda create --name env_new --clone env_old //克隆环境</p>
-</blockquote>
-<blockquote>
-<p>conda create -n py36 python=3.6 创建环境，指定版本</p>
-</blockquote>
-<blockquote>
-<p>activate/deactivate env_name 激活/退出环境</p>
-</blockquote>
-<blockquote>
-<p>conda env export &gt; environment.yaml // 导出当前环境的包信息</p>
-</blockquote>
-<blockquote>
-<p>conda env create -f environment.yaml // 用配置文件创建新的虚拟环境</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>anaconda</category>
-      </categories>
-      <tags>
-        <tag>教程</tag>
       </tags>
   </entry>
 </search>
